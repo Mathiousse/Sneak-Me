@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@layer Base {
+  * {
+    font-family: "Roboto";
+  }
+  body .chatbots {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    height: 80vh;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  body .chatbots .chatbot-container {
+    display: flex;
+  }
+  body .chatbots .chatbot-container .chatbot {
+    transition: opacity 0.4s ease-out;
+    opacity: 1;
+    width: 450px;
+    height: 550px;
+    background: white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    position: relative;
+  }
+  body .chatbots .chatbot-container .chatbot .header {
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(90deg, #1d57cb, #24abf9);
+    border-radius: 10px 10px 0 0;
+    color: white;
+    height: 75px;
+    padding-left: 10%;
+    position: relative;
+  }
+  body .chatbots .chatbot-container .chatbot .header .marc-icon {
+    height: 70px;
+    align-self: flex-end;
+    margin-right: 5%;
+  }
+  body .chatbots .chatbot-container .chatbot .header p {
+    font-size: 12px;
+    position: relative;
+    align-self: center;
+    margin-right: 20%;
+  }
+  body .chatbots .chatbot-container .chatbot .header p span {
+    font-size: 20px;
+  }
+  body .chatbots .chatbot-container .chatbot .header .panier {
+    height: 25px;
+    width: 25px;
+    position: relative;
+    align-self: center;
+    margin-right: 4%;
+  }
+  body .chatbots .chatbot-container .chatbot .header .compte {
+    height: 25px;
+    width: 25px;
+    position: relative;
+    align-self: center;
+    color: white;
+    margin-right: 4%;
+  }
+  body .chatbots .chatbot-container .chatbot .header .options {
+    height: 25px;
+    width: 10px;
+    position: relative;
+    align-self: center;
+    margin-right: 4%;
+  }
+  body .chatbots .chatbot-container .chatbot .messages {
+    display: flex;
+    flex-direction: column;
+    height: 340px;
+    margin-bottom: 30px;
+    overflow-y: auto;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .message {
+    margin: 6% 3% 0;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .message p {
+    margin: 0;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .message.bot {
+    align-self: start;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .message.bot p {
+    background-color: #ebebeb;
+    border-radius: 8px 8px 8px 1px;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .message.user {
+    align-self: flex-end;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .message.user p {
+    background-color: #6bbceb;
+    border-radius: 8px 8px 1px 8px;
+    color: white;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom {
+    height: 200px;
+    margin-left: 4%;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .buttons {
+    margin-bottom: 5px;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .buttons button {
+    background-color: rgba(254, 88, 33, 0.7529411765);
+    border-style: none;
+    border-radius: 8px;
+    color: #fff;
+    padding: 4px 8px;
+    position: relative;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .buttons .add {
+    border-radius: 100%;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture {
+    display: flex;
+    flex-direction: row;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea {
+    background-color: #ebebeb;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    resize: none;
+    width: 250px;
+    height: 30px;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea::-moz-placeholder {
+    padding: 2px 0 0 2px;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea::placeholder {
+    padding: 2px 0 0 2px;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea:focus-visible {
+    outline: none;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture input {
+    background-color: #ebebeb;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    width: 30px;
+    height: 24px;
+    padding: 5px;
+  }
+  body .chatbots .chatbot-container .login {
+    background: linear-gradient(145deg, #24abf9, #1d57cb);
+  }
+  body .chatbots .chatbot-container .login .options {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 5%;
+  }
+  body .chatbots .chatbot-container .login .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body .chatbots .chatbot-container .login .logo img {
+    width: 20%;
+  }
+  body .chatbots .chatbot-container .login .logo h1 {
+    color: #fff;
+    font-size: 23px;
+    margin: 10% 0;
+  }
+  body .chatbots .chatbot-container .login .contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    align-items: center;
+    margin: auto;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-email {
+    position: relative;
+    width: 70%;
+    margin-bottom: 5%;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-email img {
+    width: 5%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-email input {
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 8px 8px 32px;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-email input::-moz-placeholder {
+    font-size: 13px;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-email input::placeholder {
+    font-size: 13px;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-password {
+    position: relative;
+    width: 70%;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-password #cadenas {
+    width: 5%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #8e8e8e;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-password #eye {
+    width: 5%;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    color: #8e8e8e;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-password #eye-crossed {
+    width: 5%;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    color: #8e8e8e;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-password input {
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 8px 8px 32px;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-password input::-moz-placeholder {
+    font-size: 13px;
+  }
+  body .chatbots .chatbot-container .login .contact-form .form-password input::placeholder {
+    font-size: 13px;
+  }
+  body .chatbots .chatbot-container .register {
+    background: linear-gradient(145deg, #24abf9, #1d57cb);
+  }
+  body .chatbots .chatbot-container .register .options {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 5%;
+  }
+  body .chatbots .chatbot-container .register .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body .chatbots .chatbot-container .register .logo img {
+    width: 20%;
+  }
+  body .chatbots .chatbot-container .register .logo h1 {
+    color: #fff;
+    font-size: 23px;
+    margin: 10% 0 5% 0;
+  }
+  body .chatbots .chatbot-container .register .contact-form {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto;
+    gap: 0px 0px;
+    grid-template-areas: "first-name last-name" "email email" "number password";
+    max-width: 80%;
+    align-items: center;
+    margin: auto;
+    margin-bottom: 5%;
+  }
+  body .chatbots .chatbot-container .register .contact-form .first-name {
+    grid-area: first-name;
+  }
+  body .chatbots .chatbot-container .register .contact-form .last-name {
+    grid-area: last-name;
+  }
+  body .chatbots .chatbot-container .register .contact-form .email {
+    grid-area: email;
+  }
+  body .chatbots .chatbot-container .register .contact-form .number {
+    grid-area: number;
+  }
+  body .chatbots .chatbot-container .register .contact-form .password {
+    grid-area: password;
+  }
+  body .chatbots .chatbot-container .register .contact-form .form {
+    position: relative;
+    width: 75%;
+    margin-bottom: 5%;
+  }
+  body .chatbots .chatbot-container .register .contact-form .form input {
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 8px 8px 32px;
+  }
+  body .chatbots .chatbot-container .register .log {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  body .chatbots .chatbot-container .register .log .login-button {
+    width: 35%;
+  }
+  body .chatbots .chatbot-container .lost-password {
+    align-self: end;
+    margin-right: 40px;
+    margin-bottom: 8%;
+  }
+  body .chatbots .chatbot-container .lost-password a {
+    color: #fff;
+    font-size: 11px;
+  }
+  body .chatbots .chatbot-container .lost-password-button {
+    cursor: pointer;
+    width: 50%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 5%;
+  }
+  body .chatbots .chatbot-container .lost-password-button p {
+    color: #fff;
+    margin: 0;
+    padding: 2%;
+  }
+  body .chatbots .chatbot-container .login-button {
+    cursor: pointer;
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fe5a21;
+  }
+  body .chatbots .chatbot-container .login-button p {
+    color: #fff;
+    margin: 0;
+    padding: 1%;
+    font-size: 21px;
+  }
+  body .chatbots .chatbot-container .sign-up p {
+    font-size: 15px;
+    color: #fff;
+  }
+  body .chatbots .chatbot-container .sign-up p a {
+    color: #fff;
+  }
+  body .chatbots .opener {
+    all: unset;
+    background: radial-gradient(circle, rgb(36, 171, 249) 0%, rgb(46, 103, 217) 100%);
+    border-radius: 100px;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-weight: 900;
+    font-family: "Roboto";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    align-self: end;
+    margin-bottom: 5%;
+    margin-left: -35px;
+    z-index: 2;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+  }
+  body .chatbots .opener img {
+    width: 80%;
+    height: 80%;
+    pointer-events: none;
+  }
+  body .chatbots .opener.chat-closed {
+    width: 100px;
+    height: 100px;
+  }
+  body .chatbots .chatbot.closed {
+    opacity: 0;
+  }
+}/*# sourceMappingURL=main.css.map */

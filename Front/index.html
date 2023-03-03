@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
+        integrity="sha512-giQeaPns4lQTBMRpOOHsYnGw1tGVzbAIHUyHRgn7+6FmiEgGGjaG0T2LZJmAPMzRCl+Cug0ItQ2xDZpTmEc+CQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="main.js" defer></script>
+    <script src="https://unpkg.com/@rive-app/canvas@1.0.98"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="chatbot-test">
+        <form id="send-message" action="">
+            <input type="text" name="message">
+            <input type="submit" value="Envoyer">
+        </form>
+        <div id="conversation"></div>
+    </div>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <div class="chatbots">
+        <div class="chatbot-container">
+            <div class="chatbot">
+                <div class="header">
+                    <img class="marc-icon" src="./images/business.svg" alt="icône de Marc">
+                    <p>
+                        <span>Marc</span>
+                        <br>
+                        Assistant chez Sneak Me
+                    </p>
+                    <img class="panier" src="./images/cart.svg" alt="Panier">
+                    <img class="compte" src="./images/utilisateur (1).svg" alt="Compte">
+                    <img class="options" src="./images/dots.svg" alt="Options">
+                </div>
+                <div class="messages">
+                    <div class="message bot">
+                        <p>Bonjour, que souhaitez-vous faire ?</p>
+                    </div>
+                    <div class="message user">
+                        <p>Je veux voir les chaussures Nike</p>
+                    </div>
+                    <div class="message bot">
+                        <p>Très bien ! Voici notre catalogue de chaussures Nike</p>
+                    </div>
+                </div>
+
+                <div class="bottom">
+                    <div class="buttons">
+                        <button><img src="./images/Icon ionic-ios-return-left.svg" alt="retour"></button>
+                        <button>Catalogue</button>
+                        <button>Mes commandes</button>
+                        <button class="add">+</button>
+                    </div>
+                    <div class="ecriture">
+                        <textarea name="Ecrire un message" placeholder="Envoyer un message" id="reponse" cols="50"
+                            rows="1"></textarea>
+                        <input type="image" id="send" alt="Envoyer" src="./images/Icon feather-send.svg">
+                    </div>
+                </div>
+            </div>
+            <button class="opener">
+                <img src="./images/sneak_me_white.svg" alt="Contrôle du chatbot"></button>
+        </div>
+
+        <div class="chatbot-container">
+            <div class="chatbot register">
+                <div class="options">
+                    <img src="./images/dots.svg" alt="Options">
+                </div>
+                <div class="logo">
+                    <img src="./images/sneak_me_white.svg" alt="Logo">
+                    <h1>Inscription</h1>
+                </div>
+                <form class="contact-form" role="form">
+                    <div class="form first-name">
+                        <img src="" alt="Enveloppe">
+                        <input type="text" class="first-name" placeholder="Prénom" required>
+                    </div>
+                    <div class="form last-name">
+                        <img src="" alt="Cadenas">
+                        <input type="text" class="last-name" placeholder="Nom" required>
+                    </div>
+                    <div class="form email">
+                        <img src="" alt="Enveloppe">
+                        <input class="email" placeholder="Adresse mail" type="email" required>
+                    </div>
+                    <div class="form number">
+                        <img src="" alt="Cadenas">
+                        <input type="tel" class="number" placeholder="téléphone" required>
+                    </div>
+                    <div class="form password">
+                        <img src="" alt="Cadenas">
+                        <input type="password" class="password" placeholder="Mot de passe" required>
+                    </div>
+                </form>
+
+                <div class="log">
+                    <button class="login-button" type="submit">
+                        <p>Inscription</p>
+                    </button>
+                    <div class="sign-up">
+                        <p>Tu as déja un compte ?
+                            <a href="">Connecte-toi !
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-container">
+            <div class="chatbot login open">
+                <div class="options">
+                    <img src="./images/dots.svg" alt="Options">
+                </div>
+                <div class="logo">
+                    <img src="./images/sneak_me_white.svg" alt="Logo">
+                    <h1>Bienvenue sur Sneak Me !</h1>
+                </div>
+                <form class="contact-form" role="form">
+                    <div class="form-email">
+                        <img src="./images/envelope.svg" alt="Enveloppe">
+                        <input class="email" placeholder="Adresse mail" type="email" required>
+                    </div>
+                    <div class="form-password">
+                        <img id="cadenas" src="./images/ouvrir.svg" alt="Cadenas">
+                        <input id="password" type="password" class="password" placeholder="Mot de passe" required>
+                        <img style="cursor:pointer;" id="eye" src="./images/eye.svg" alt="Oeil"
+                            onclick="switchImages()">
+                        <img style="cursor:pointer;" id="eye-crossed" src="./images/eye-crossed.svg" alt="Oeil fermé"
+                            style="display:none" onclick="switchImages()">
+                    </div>
+                    <div class="lost-password">
+                        <a href="">Mot de passe oublié ?</a>
+                    </div>
+                    <button class="lost-password-button" type="submit">
+                        <p>Continuer en tant qu'invité</p>
+                    </button>
+                    <button class="login-button" type="submit">
+                        <p>Connexion</p>
+                    </button>
+                    <div class="sign-up">
+                        <p>Pas encore de compte ?
+                            <a href="">Inscris toi !
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
