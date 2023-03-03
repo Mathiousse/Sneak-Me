@@ -156,6 +156,9 @@
     flex-direction: row-reverse;
     margin: 5%;
   }
+  body .chatbots .chatbot-container .login .options img {
+    cursor: pointer;
+  }
   body .chatbots .chatbot-container .login .logo {
     display: flex;
     flex-direction: column;
@@ -244,6 +247,9 @@
     flex-direction: row-reverse;
     margin: 5%;
   }
+  body .chatbots .chatbot-container .register .options img {
+    cursor: pointer;
+  }
   body .chatbots .chatbot-container .register .logo {
     display: flex;
     flex-direction: column;
@@ -255,18 +261,17 @@
   body .chatbots .chatbot-container .register .logo h1 {
     color: #fff;
     font-size: 23px;
-    margin: 10% 0 5% 0;
+    margin: 10% 0 10% 0;
   }
   body .chatbots .chatbot-container .register .contact-form {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto auto;
-    gap: 0px 0px;
-    grid-template-areas: "first-name last-name" "email email" "number password";
+    gap: 25px 0px;
+    grid-template-areas: "first-name last-name" "email email" "number password" "log log";
     max-width: 80%;
     align-items: center;
     margin: auto;
-    margin-bottom: 5%;
   }
   body .chatbots .chatbot-container .register .contact-form .first-name {
     grid-area: first-name;
@@ -276,6 +281,7 @@
   }
   body .chatbots .chatbot-container .register .contact-form .email {
     grid-area: email;
+    width: 91.7% !important;
   }
   body .chatbots .chatbot-container .register .contact-form .number {
     grid-area: number;
@@ -283,10 +289,41 @@
   body .chatbots .chatbot-container .register .contact-form .password {
     grid-area: password;
   }
+  body .chatbots .chatbot-container .register .contact-form .log {
+    grid-area: log;
+    margin-top: 2%;
+  }
+  body .chatbots .chatbot-container .register .contact-form #phone,
+  body .chatbots .chatbot-container .register .contact-form #cadenas,
+  body .chatbots .chatbot-container .register .contact-form #edit {
+    width: 10%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  body .chatbots .chatbot-container .register .contact-form #email {
+    width: 4%;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  body .chatbots .chatbot-container .register .contact-form #eye1 {
+    width: 10%;
+    position: absolute;
+    top: 10px;
+    right: -10%;
+    color: #8e8e8e;
+  }
+  body .chatbots .chatbot-container .register .contact-form #eye-crossed1 {
+    width: 10%;
+    position: absolute;
+    top: 10px;
+    right: -10%;
+    color: #8e8e8e;
+  }
   body .chatbots .chatbot-container .register .contact-form .form {
     position: relative;
     width: 75%;
-    margin-bottom: 5%;
   }
   body .chatbots .chatbot-container .register .contact-form .form input {
     width: 90%;
@@ -324,6 +361,20 @@
     color: #fff;
     margin: 0;
     padding: 2%;
+  }
+  body .chatbots .chatbot-container .register-button {
+    cursor: pointer;
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fe5a21;
+  }
+  body .chatbots .chatbot-container .register-button p {
+    color: #fff;
+    margin: 0;
+    padding: 1%;
+    font-size: 21px;
   }
   body .chatbots .chatbot-container .login-button {
     cursor: pointer;
@@ -366,14 +417,13 @@
     cursor: pointer;
     transition: 0.3s ease-out;
   }
-  body .chatbots .opener img {
-    width: 80%;
-    height: 80%;
-    pointer-events: none;
-  }
   body .chatbots .opener.chat-closed {
     width: 100px;
     height: 100px;
+  }
+  body .chatbots .opener canvas {
+    height: 100%;
+    width: 100%;
   }
   body .chatbots .chatbot.closed {
     opacity: 0;

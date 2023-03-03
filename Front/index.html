@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,7 @@
     <canvas id="canvas" width="500" height="500"></canvas>
     <div class="chatbots">
         <div class="chatbot-container">
-            <div class="chatbot">
+            <div class="chatbot closed">
                 <div class="header">
                     <img class="marc-icon" src="./images/business.svg" alt="icône de Marc">
                     <p>
@@ -63,8 +63,8 @@
                     </div>
                 </div>
             </div>
-            <button class="opener">
-                <img src="./images/sneak_me_white.svg" alt="Contrôle du chatbot"></button>
+            <button class="opener chat-closed">
+                <canvas id="bouton"></canvas>
         </div>
 
         <div class="chatbot-container">
@@ -78,38 +78,42 @@
                 </div>
                 <form class="contact-form" role="form">
                     <div class="form first-name">
-                        <img src="" alt="Enveloppe">
+                        <img id="edit" src="./images/edit.svg" alt="Profil">
                         <input type="text" class="first-name" placeholder="Prénom" required>
                     </div>
                     <div class="form last-name">
-                        <img src="" alt="Cadenas">
+                        <img id="edit" src="./images/edit.svg" alt="Profil">
                         <input type="text" class="last-name" placeholder="Nom" required>
                     </div>
                     <div class="form email">
-                        <img src="" alt="Enveloppe">
+                        <img id="email" src="./images/envelope.svg" alt="Enveloppe">
                         <input class="email" placeholder="Adresse mail" type="email" required>
                     </div>
                     <div class="form number">
-                        <img src="" alt="Cadenas">
+                        <img id="phone" src="./images/phone.svg" alt="Phone">
                         <input type="tel" class="number" placeholder="téléphone" required>
                     </div>
                     <div class="form password">
-                        <img src="" alt="Cadenas">
-                        <input type="password" class="password" placeholder="Mot de passe" required>
+                        <img id="cadenas" src="./images/ouvrir.svg" alt="Cadenas">
+                        <input type="password" id="password1" class="password" placeholder="Mot de passe" required>
+                        <img style="cursor:pointer;" id="eye1" src="./images/eye.svg" alt="Oeil"
+                            onclick="switchImages1()">
+                        <img style="cursor:pointer;" id="eye-crossed1" src="./images/eye-crossed.svg" alt="Oeil fermé"
+                            style="display:none" onclick="switchImages1()">
+                    </div>
+
+                    <div class="log">
+                        <button class="register-button" type="submit">
+                            <p>Inscription</p>
+                        </button>
+                        <div class="sign-up">
+                            <p>Tu as déja un compte ?
+                                <a href="">Connecte-toi !
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </form>
-
-                <div class="log">
-                    <button class="login-button" type="submit">
-                        <p>Inscription</p>
-                    </button>
-                    <div class="sign-up">
-                        <p>Tu as déja un compte ?
-                            <a href="">Connecte-toi !
-                            </a>
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="chatbot-container">

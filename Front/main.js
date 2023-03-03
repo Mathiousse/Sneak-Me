@@ -1,6 +1,8 @@
 document.querySelector(".opener").addEventListener(('click'), (e) => {
-    e.target.previousElementSibling.classList.toggle("closed")
-    e.target.classList.toggle("chat-closed")
+    const button = e.target.parentElement
+    button.classList.toggle("chat-closed")
+    const chatbot = button.parentElement.firstElementChild
+    chatbot.classList.toggle("closed")
 })
 
 let imageOneVisible = false;
@@ -20,11 +22,27 @@ function switchImages() {
 }
 switchImages()
 
+let imageOneVisible1 = false;
+function switchImages1() {
+    if (imageOneVisible1) {
+        document.getElementById("eye1").style.display = "none";
+        document.getElementById("eye-crossed1").style.display = "block";
+        document.getElementById("password1").type = "password";
+        document.getElementById("password1").type = "text";
+        imageOneVisible1 = false;
+    } else {
+        document.getElementById("eye1").style.display = "block";
+        document.getElementById("eye-crossed1").style.display = "none";
+        document.getElementById("password1").type = "password";
+        imageOneVisible1 = true;
+    }
+}
+switchImages1()
+
 new rive.Rive({
-    src: "https://cdn.rive.app/animations/vehicles.riv",
-    // Or the path to a local Rive asset
-    // src: './example.riv',
-    canvas: document.getElementById("canvas"),
+    src: "./newFile.riv",
+    stateMachines: 'State Machine 1',
+    canvas: document.getElementById("bouton"),
     autoplay: true
 });
 
@@ -35,17 +53,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     form.addEventListener('submit', (e) => {
         e.preventDefault()
-        fetch('http://localhost:8000/api/products/search?q=' + input.value)
+        fetch('http://localhost:8000/api/chatbot?q=' + input.value)
             .then(response => response.json())
             .then(data => {
                 const conversation = document.querySelector('#conversation');
-                conversation.innerHTML = ""
-                data.forEach(product => {
-                    conversation.innerHTML += product.name + '<br>'
-                });
+                conversation.innerHTML = data
             })
     })
 })
 
-
-
+document.addEventListener("DOMContentLoaded", () => {
+    const inputField = document.getElementById("#send")
+    inputField.addEventListener("keydown", function (e) {
+        if (e.code === "Enter") {
+            let input = inputField.value;
+            inputField.value = "";
+            output(input);
+        }
+    });
+});

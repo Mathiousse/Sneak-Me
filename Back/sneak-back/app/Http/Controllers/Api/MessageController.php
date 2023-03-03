@@ -10,9 +10,13 @@ class MessageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $q = $request->query('q');
+        if (str_contains($q, 'cortez')) {
+            return response()->json('NON PAS LES CORTEZ');
+        };
+        return response()->json('Salut, ' . $q);
     }
 
     /**
