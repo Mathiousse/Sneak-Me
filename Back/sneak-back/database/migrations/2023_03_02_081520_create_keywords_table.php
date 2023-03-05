@@ -20,6 +20,7 @@ class CreateKeywordsTable extends Migration
             $table->string('keyword', 255);
             $table->unsignedBigInteger('message_id');
             $table->foreign('message_id')->references('id')->on('reponses');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

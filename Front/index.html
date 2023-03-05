@@ -15,14 +15,6 @@
 </head>
 
 <body>
-    <div class="chatbot-test">
-        <form id="send-message" action="">
-            <input type="text" name="message">
-            <input type="submit" value="Envoyer">
-        </form>
-        <div id="conversation"></div>
-    </div>
-    <canvas id="canvas" width="500" height="500"></canvas>
     <div class="chatbots">
         <div class="chatbot-container">
             <div class="chatbot closed">
@@ -41,12 +33,6 @@
                     <div class="message bot">
                         <p>Bonjour, que souhaitez-vous faire ?</p>
                     </div>
-                    <div class="message user">
-                        <p>Je veux voir les chaussures Nike</p>
-                    </div>
-                    <div class="message bot">
-                        <p>Très bien ! Voici notre catalogue de chaussures Nike</p>
-                    </div>
                 </div>
 
                 <div class="bottom">
@@ -57,14 +43,16 @@
                         <button class="add">+</button>
                     </div>
                     <div class="ecriture">
-                        <textarea name="Ecrire un message" placeholder="Envoyer un message" id="reponse" cols="50"
-                            rows="1"></textarea>
-                        <input type="image" id="send" alt="Envoyer" src="./images/Icon feather-send.svg">
+                        <form id="send-message">
+                            <textarea name="message" placeholder="Envoyer un message" id="reponse" cols="50"
+                                rows="1"></textarea>
+                            <input type="image" id="send" alt="Envoyer" src="./images/Icon feather-send.svg">
+                        </form>
                     </div>
                 </div>
             </div>
             <button class="opener chat-closed">
-                <canvas id="bouton"></canvas>
+                <canvas id="bouton" width="0" height="0"></canvas>
         </div>
 
         <div class="chatbot-container">

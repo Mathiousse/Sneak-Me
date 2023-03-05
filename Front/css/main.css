@@ -76,6 +76,7 @@
     height: 340px;
     margin-bottom: 30px;
     overflow-y: auto;
+    overflow-x: hidden;
   }
   body .chatbots .chatbot-container .chatbot .messages .message {
     margin: 6% 3% 0;
@@ -123,7 +124,10 @@
     display: flex;
     flex-direction: row;
   }
-  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea {
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture form {
+    display: flex;
+  }
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture form textarea {
     background-color: #ebebeb;
     border: none;
     border-radius: 8px 0 0 8px;
@@ -131,16 +135,16 @@
     width: 250px;
     height: 30px;
   }
-  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea::-moz-placeholder {
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture form textarea::-moz-placeholder {
     padding: 2px 0 0 2px;
   }
-  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea::placeholder {
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture form textarea::placeholder {
     padding: 2px 0 0 2px;
   }
-  body .chatbots .chatbot-container .chatbot .bottom .ecriture textarea:focus-visible {
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture form textarea:focus-visible {
     outline: none;
   }
-  body .chatbots .chatbot-container .chatbot .bottom .ecriture input {
+  body .chatbots .chatbot-container .chatbot .bottom .ecriture form input {
     background-color: #ebebeb;
     border: none;
     border-radius: 0 8px 8px 0;
@@ -415,7 +419,7 @@
     margin-left: -35px;
     z-index: 2;
     cursor: pointer;
-    transition: 0.3s ease-out;
+    transition: 0.4s ease-out;
   }
   body .chatbots .opener.chat-closed {
     width: 100px;
@@ -424,6 +428,7 @@
   body .chatbots .opener canvas {
     height: 100%;
     width: 100%;
+    border-radius: 150px;
   }
   body .chatbots .chatbot.closed {
     opacity: 0;

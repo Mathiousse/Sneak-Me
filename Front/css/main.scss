@@ -84,6 +84,7 @@ $bleumessage: #6bbceb;
                         height: 340px;
                         margin-bottom: 30px;
                         overflow-y: auto;
+                        overflow-x: hidden;
                         .message {
                             margin: 6% 3% 0;
 
@@ -129,30 +130,34 @@ $bleumessage: #6bbceb;
                                 border-radius: 100%;
                             }
                         }
+
                         .ecriture {
                             display: flex;
                             flex-direction: row;
-                            textarea {
-                                background-color: $grismessage;
-                                border: none;
-                                border-radius: 8px 0 0 8px;
-                                resize: none;
-                                width: 250px;
-                                height: 30px;
-                                &::placeholder {
-                                    padding: 2px 0 0 2px;
+                            form {
+                                display: flex;
+                                textarea {
+                                    background-color: $grismessage;
+                                    border: none;
+                                    border-radius: 8px 0 0 8px;
+                                    resize: none;
+                                    width: 250px;
+                                    height: 30px;
+                                    &::placeholder {
+                                        padding: 2px 0 0 2px;
+                                    }
+                                    &:focus-visible {
+                                        outline: none;
+                                    }
                                 }
-                                &:focus-visible {
-                                    outline: none;
+                                input {
+                                    background-color: $grismessage;
+                                    border: none;
+                                    border-radius: 0 8px 8px 0;
+                                    width: 30px;
+                                    height: 24px;
+                                    padding: 5px;
                                 }
-                            }
-                            input {
-                                background-color: $grismessage;
-                                border: none;
-                                border-radius: 0 8px 8px 0;
-                                width: 30px;
-                                height: 24px;
-                                padding: 5px;
                             }
                         }
                     }
@@ -468,7 +473,7 @@ $bleumessage: #6bbceb;
                 margin-left: -35px;
                 z-index: 2;
                 cursor: pointer;
-                transition: 0.3s ease-out;
+                transition: 0.4s ease-out;
 
                 &.chat-closed {
                     width: 100px;
@@ -477,6 +482,7 @@ $bleumessage: #6bbceb;
                 canvas {
                     height: 100%;
                     width: 100%;
+                    border-radius: 150px;
                 }
             }
 

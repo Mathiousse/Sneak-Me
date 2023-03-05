@@ -40,7 +40,7 @@ function switchImages1() {
 switchImages1()
 
 new rive.Rive({
-    src: "./newFile.riv",
+    src: "./animation-final.riv",
     stateMachines: 'State Machine 1',
     canvas: document.getElementById("bouton"),
     autoplay: true
@@ -49,26 +49,39 @@ new rive.Rive({
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector("#send-message")
 
-    const input = form.querySelector('[name="message"]')
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        fetch('http://localhost:8000/api/chatbot?q=' + input.value)
-            .then(response => response.json())
-            .then(data => {
-                const conversation = document.querySelector('#conversation');
-                conversation.innerHTML = data
-            })
-    })
-})
-
-document.addEventListener("DOMContentLoaded", () => {
-    const inputField = document.getElementById("#send")
-    inputField.addEventListener("keydown", function (e) {
-        if (e.code === "Enter") {
-            let input = inputField.value;
-            inputField.value = "";
-            output(input);
+    const formTextarea = document.querySelector("#reponse")
+    const formSend = document.querySelector("#send")
+    formTextarea.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            formSend.click()
         }
     });
-});
+
+    const input = form.querySelector('[name="message"]')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        message = input.value
+        addMessage('user', message)
+        input.value = ""
+        fetch('http://localhost:8000/api/chatbot?q=' + message)
+            .then(response => response.json())
+            .then(data => {
+                addMessage('bot', data)
+            })
+        input.value = ""
+    })
+
+
+
+})
+
+
+function addMessage(role, message) {
+    let div = document.createElement('div')
+    div.classList.add(role, 'message')
+    let p = document.createElement('p')
+    p.innerText = message
+    div.appendChild(p)
+    document.querySelector(".messages").appendChild(div)
+    document.querySelector("textarea").value = ""
+}

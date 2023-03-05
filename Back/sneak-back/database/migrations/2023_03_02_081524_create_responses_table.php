@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReponsesTable extends Migration
+class CreateResponsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,10 @@ class CreateReponsesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('reponses', function (Blueprint $table) {
+        Schema::create('responses', function (Blueprint $table) {
             $table->id();
             $table->text('message');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
@@ -30,6 +31,6 @@ class CreateReponsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reponses');
+        Schema::dropIfExists('responses');
     }
 }
