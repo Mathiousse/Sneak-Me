@@ -3,16 +3,22 @@
   * {
     font-family: "Roboto";
   }
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+  }
   body .chatbots {
-    display: flex;
-    width: 100vw;
-    justify-content: center;
-    height: 80vh;
-    align-items: center;
-    justify-content: space-evenly;
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    width: 450px;
+    height: 550px;
   }
   body .chatbots .chatbot-container {
     display: flex;
+    transition: opacity 0.3s ease-out;
   }
   body .chatbots .chatbot-container .chatbot {
     transition: opacity 0.4s ease-out;
@@ -54,6 +60,7 @@
     position: relative;
     align-self: center;
     margin-right: 4%;
+    cursor: pointer;
   }
   body .chatbots .chatbot-container .chatbot .header .compte {
     height: 25px;
@@ -62,6 +69,7 @@
     align-self: center;
     color: white;
     margin-right: 4%;
+    cursor: pointer;
   }
   body .chatbots .chatbot-container .chatbot .header .options {
     height: 25px;
@@ -69,6 +77,7 @@
     position: relative;
     align-self: center;
     margin-right: 4%;
+    cursor: pointer;
   }
   body .chatbots .chatbot-container .chatbot .messages {
     display: flex;
@@ -94,6 +103,17 @@
     background-color: #ebebeb;
     border-radius: 8px 8px 8px 1px;
   }
+  body .chatbots .chatbot-container .chatbot .messages .button-user .button-login,
+  body .chatbots .chatbot-container .chatbot .messages .button-user .button-register {
+    background-color: rgba(254, 88, 33, 0.7529411765);
+    border-style: none;
+    border-radius: 8px;
+    color: #fff;
+    padding: 4px 8px;
+    position: relative;
+    margin: 2% 2% 2% 0;
+    cursor: pointer;
+  }
   body .chatbots .chatbot-container .chatbot .messages .message.user {
     align-self: flex-end;
   }
@@ -116,6 +136,7 @@
     color: #fff;
     padding: 4px 8px;
     position: relative;
+    cursor: pointer;
   }
   body .chatbots .chatbot-container .chatbot .bottom .buttons .add {
     border-radius: 100%;
@@ -132,7 +153,7 @@
     border: none;
     border-radius: 8px 0 0 8px;
     resize: none;
-    width: 250px;
+    width: 80%;
     height: 30px;
   }
   body .chatbots .chatbot-container .chatbot .bottom .ecriture form textarea::-moz-placeholder {
@@ -400,6 +421,8 @@
   }
   body .chatbots .chatbot-container .sign-up p a {
     color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
   }
   body .chatbots .opener {
     all: unset;
@@ -420,6 +443,9 @@
     z-index: 2;
     cursor: pointer;
     transition: 0.4s ease-out;
+    position: absolute;
+    bottom: 0;
+    right: -30px;
   }
   body .chatbots .opener.chat-closed {
     width: 100px;
@@ -430,7 +456,14 @@
     width: 100%;
     border-radius: 150px;
   }
-  body .chatbots .chatbot.closed {
+  body .chatbots2 .chatbot-container {
     opacity: 0;
+    z-index: -2;
+    position: absolute;
+  }
+  body .chatbots2 .main.button-opened {
+    opacity: 1;
+    z-index: 2;
+    position: relative;
   }
 }/*# sourceMappingURL=main.css.map */

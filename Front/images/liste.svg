@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27.73" height="20" viewBox="0 0 27.73 20">
+  <g id="liste" transform="translate(-0.5)">
+    <path id="Tracé_36" data-name="Tracé 36" d="M7.028,6.148H23.474a1.075,1.075,0,0,0,0-2.148H7.028a1.075,1.075,0,0,0,0,2.148Z" transform="translate(3.728 -2.624)" fill="#fff"/>
+    <path id="Tracé_37" data-name="Tracé 37" d="M23.474,11H7.028a1.075,1.075,0,0,0,0,2.148H23.474a1.075,1.075,0,0,0,0-2.148Z" transform="translate(3.728 -1.869)" fill="#fff"/>
+    <path id="Tracé_38" data-name="Tracé 38" d="M23.474,18H7.028a1.075,1.075,0,0,0,0,2.148H23.474a1.075,1.075,0,0,0,0-2.148Z" transform="translate(3.728 -1.136)" fill="#fff"/>
+    <circle id="Ellipse_23" data-name="Ellipse 23" cx="2" cy="2" r="2" transform="translate(0.5 0)" fill="#fff"/>
+    <circle id="Ellipse_24" data-name="Ellipse 24" cx="2" cy="2" r="2" transform="translate(0.5 8)" fill="#fff"/>
+    <circle id="Ellipse_25" data-name="Ellipse 25" cx="2" cy="2" r="2" transform="translate(0.5 16)" fill="#fff"/>
+  </g>
+</svg>

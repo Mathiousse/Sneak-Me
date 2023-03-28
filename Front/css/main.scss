@@ -11,18 +11,21 @@ $bleumessage: #6bbceb;
     * {
         font-family: "Roboto";
     }
+    html {
+        height: 100%;
+    }
 
     body {
+        height: 100%;
         .chatbots {
-            display: flex;
-            width: 100vw;
-            justify-content: center;
-            height: 80vh;
-            align-items: center;
-            justify-content: space-evenly;
-
+            position: fixed;
+            bottom: 4rem;
+            right: 4rem;
+            width: 450px;
+            height: 550px;
             .chatbot-container {
                 display: flex;
+                transition: opacity 0.3s ease-out;
                 .chatbot {
                     transition: opacity 0.4s ease-out;
                     opacity: 1;
@@ -61,6 +64,7 @@ $bleumessage: #6bbceb;
                             position: relative;
                             align-self: center;
                             margin-right: 4%;
+                            cursor: pointer;
                         }
                         .compte {
                             height: 25px;
@@ -69,6 +73,7 @@ $bleumessage: #6bbceb;
                             align-self: center;
                             color: white;
                             margin-right: 4%;
+                            cursor: pointer;
                         }
                         .options {
                             height: 25px;
@@ -76,6 +81,7 @@ $bleumessage: #6bbceb;
                             position: relative;
                             align-self: center;
                             margin-right: 4%;
+                            cursor: pointer;
                         }
                     }
                     .messages {
@@ -101,6 +107,21 @@ $bleumessage: #6bbceb;
                                 border-radius: 8px 8px 8px 1px;
                             }
                         }
+
+                        .button-user {
+                            .button-login,
+                            .button-register {
+                                background-color: #fe5821c0;
+                                border-style: none;
+                                border-radius: 8px;
+                                color: #fff;
+                                padding: 4px 8px;
+                                position: relative;
+                                margin: 2% 2% 2% 0;
+                                cursor: pointer;
+                            }
+                        }
+
                         .message.user {
                             align-self: flex-end;
                             p {
@@ -124,6 +145,7 @@ $bleumessage: #6bbceb;
                                 color: #fff;
                                 padding: 4px 8px;
                                 position: relative;
+                                cursor: pointer;
                             }
 
                             .add {
@@ -141,7 +163,7 @@ $bleumessage: #6bbceb;
                                     border: none;
                                     border-radius: 8px 0 0 8px;
                                     resize: none;
-                                    width: 250px;
+                                    width: 80%;
                                     height: 30px;
                                     &::placeholder {
                                         padding: 2px 0 0 2px;
@@ -450,6 +472,8 @@ $bleumessage: #6bbceb;
 
                         a {
                             color: #fff;
+                            text-decoration: underline;
+                            cursor: pointer;
                         }
                     }
                 }
@@ -474,6 +498,9 @@ $bleumessage: #6bbceb;
                 z-index: 2;
                 cursor: pointer;
                 transition: 0.4s ease-out;
+                position: absolute;
+                bottom: 0;
+                right: -30px;
 
                 &.chat-closed {
                     width: 100px;
@@ -486,8 +513,20 @@ $bleumessage: #6bbceb;
                 }
             }
 
-            .chatbot.closed {
+            // .chatbot.closed {
+            //     opacity: 0;
+            // }
+        }
+        .chatbots2 {
+            .chatbot-container {
                 opacity: 0;
+                z-index: -2;
+                position: absolute;
+            }
+            .main.button-opened {
+                opacity: 1;
+                z-index: 2;
+                position: relative;
             }
         }
     }

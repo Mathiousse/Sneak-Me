@@ -15,9 +15,145 @@
 </head>
 
 <body>
-    <div class="chatbots">
+
+    <div class="chatbots chatbots2">
+        <div class="chatbot-container main">
+            <div class="chatbot closed" id="chatbot">
+                <div class="header">
+                    <img class="marc-icon" src="./images/business.svg" alt="icône de Marc">
+                    <p>
+                        <span>Marc</span>
+                        <br>
+                        Assistant chez Sneak Me
+                    </p>
+                    <img class="panier" src="./images/cart.svg" alt="Panier" onclick="boutonPanier()">
+                    <img class="compte" src="./images/utilisateur (1).svg" alt="Compte" onclick="boutonCompte()">
+                    <img class="options" src="./images/dots.svg" alt="Options" onclick="boutonSettings()">
+                </div>
+                <div class="messages">
+                    <div class="message bot">
+                        <p>Bonjour, que souhaitez-vous faire ?</p>
+                    </div>
+                </div>
+
+                <div class="bottom">
+                    <div class="buttons">
+                        <button><img src="./images/Icon ionic-ios-return-left.svg" alt="retour"></button>
+                        <button onclick="boutonCatalogue()">Catalogue</button>
+                        <button onclick="boutonCommande()">Mes commandes</button>
+                        <button class="add">+</button>
+                    </div>
+                    <div class="ecriture">
+                        <form id="send-message">
+                            <textarea name="message" placeholder="Envoyer un message" id="reponse" cols="50"
+                                rows="1"></textarea>
+                            <input type="image" id="send" alt="Envoyer" src="./images/Icon feather-send.svg">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
         <div class="chatbot-container">
-            <div class="chatbot closed">
+            <div class="chatbot register" id="register">
+                <div class="options">
+                    <img src="./images/dots.svg" alt="Options">
+                </div>
+                <div class="logo">
+                    <img src="./images/sneak_me_white.svg" alt="Logo">
+                    <h1>Inscription</h1>
+                </div>
+                <form class="contact-form" role="form">
+                    <div class="form first-name">
+                        <img id="edit" src="./images/edit.svg" alt="Profil">
+                        <input type="text" class="first-name" placeholder="Prénom" required>
+                    </div>
+                    <div class="form last-name">
+                        <img id="edit" src="./images/edit.svg" alt="Profil">
+                        <input type="text" class="last-name" placeholder="Nom" required>
+                    </div>
+                    <div class="form email">
+                        <img id="email" src="./images/envelope.svg" alt="Enveloppe">
+                        <input class="email" placeholder="Adresse mail" type="email" required>
+                    </div>
+                    <div class="form number">
+                        <img id="phone" src="./images/phone.svg" alt="Phone">
+                        <input type="tel" class="number" placeholder="téléphone" required>
+                    </div>
+                    <div class="form password">
+                        <img id="cadenas" src="./images/ouvrir.svg" alt="Cadenas">
+                        <input type="password" id="password1" class="password" placeholder="Mot de passe" required>
+                        <img style="cursor:pointer;" id="eye1" src="./images/eye.svg" alt="Oeil"
+                            onclick="switchImages1()">
+                        <img style="cursor:pointer;" id="eye-crossed1" src="./images/eye-crossed.svg" alt="Oeil fermé"
+                            style="display:none" onclick="switchImages1()">
+                    </div>
+
+                    <div class="log">
+                        <button class="register-button" type="submit">
+                            <p>Inscription</p>
+                        </button>
+                        <div class="sign-up">
+                            <p>Tu as déja un compte ?
+                                <a onclick="afficherLogin()">Connecte-toi !
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="chatbot-container">
+            <div class="chatbot login open" id="login">
+                <div class="options">
+                    <img src="./images/dots.svg" alt="Options">
+                </div>
+                <div class="logo">
+                    <img src="./images/sneak_me_white.svg" alt="Logo">
+                    <h1>Bienvenue sur Sneak Me !</h1>
+                </div>
+                <form class="contact-form" role="form">
+                    <div class="form-email">
+                        <img src="./images/envelope.svg" alt="Enveloppe">
+                        <input class="email" placeholder="Adresse mail" type="email" required>
+                    </div>
+                    <div class="form-password">
+                        <img id="cadenas" src="./images/ouvrir.svg" alt="Cadenas">
+                        <input id="password" type="password" class="password" placeholder="Mot de passe" required>
+                        <img style="cursor:pointer;" id="eye" src="./images/eye.svg" alt="Oeil"
+                            onclick="switchImages()">
+                        <img style="cursor:pointer;" id="eye-crossed" src="./images/eye-crossed.svg" alt="Oeil fermé"
+                            style="display:none" onclick="switchImages()">
+                    </div>
+                    <div class="lost-password">
+                        <a href="">Mot de passe oublié ?</a>
+                    </div>
+                    <button class="lost-password-button" type="submit">
+                        <p onclick="afficherChatbot()">Continuer en tant qu'invité</p>
+                    </button>
+                    <button class="login-button" type="submit">
+                        <p>Connexion</p>
+                    </button>
+                    <div class="sign-up">
+                        <p>Pas encore de compte ?
+                            <a onclick="afficherRegister()">Inscris toi !
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <button class="opener chat-closed">
+            <canvas id="bouton" width="0" height="0"></canvas>
+        </button>
+
+    </div>
+
+    <!-- <div class="chatbots">
+        <div class="chatbot-container">
+            <div class="chatbot closed" id="chatbot">
                 <div class="header">
                     <img class="marc-icon" src="./images/business.svg" alt="icône de Marc">
                     <p>
@@ -26,7 +162,7 @@
                         Assistant chez Sneak Me
                     </p>
                     <img class="panier" src="./images/cart.svg" alt="Panier">
-                    <img class="compte" src="./images/utilisateur (1).svg" alt="Compte">
+                    <img class="compte" src="./images/utilisateur (1).svg" alt="Compte" onclick="boutonCompte()">
                     <img class="options" src="./images/dots.svg" alt="Options">
                 </div>
                 <div class="messages">
@@ -56,7 +192,7 @@
         </div>
 
         <div class="chatbot-container">
-            <div class="chatbot register">
+            <div class="chatbot register" id="register">
                 <div class="options">
                     <img src="./images/dots.svg" alt="Options">
                 </div>
@@ -105,7 +241,7 @@
             </div>
         </div>
         <div class="chatbot-container">
-            <div class="chatbot login open">
+            <div class="chatbot login open" id="login">
                 <div class="options">
                     <img src="./images/dots.svg" alt="Options">
                 </div>
@@ -130,7 +266,7 @@
                         <a href="">Mot de passe oublié ?</a>
                     </div>
                     <button class="lost-password-button" type="submit">
-                        <p>Continuer en tant qu'invité</p>
+                        <p onclick="guest()">Continuer en tant qu'invité</p>
                     </button>
                     <button class="login-button" type="submit">
                         <p>Connexion</p>
@@ -144,8 +280,8 @@
                 </form>
             </div>
         </div>
+    </div> -->
 
-    </div>
 
 </body>
 

@@ -18,8 +18,8 @@ class CreateKeywordsTable extends Migration
         Schema::create('keywords', function (Blueprint $table) {
             $table->id();
             $table->string('keyword', 255);
-            $table->unsignedBigInteger('message_id');
-            $table->foreign('message_id')->references('id')->on('reponses');
+            $table->unsignedBigInteger('response_id');
+            $table->foreign('response_id')->references('id')->on('responses');
             $table->timestamps();
         });
 

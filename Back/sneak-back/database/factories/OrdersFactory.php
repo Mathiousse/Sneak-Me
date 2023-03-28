@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,11 +19,8 @@ class OrdersFactory extends Factory
     public function definition(): array
     {
         return [
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('status', 100);
-            $table->integer('total');
-            'status' =>
+            'user_id' => User::all()->random()->id,
+            'status' => fake()->numberBetween(0,1),
             'total' => fake()->numberBetween(0,100),
         ];
     }

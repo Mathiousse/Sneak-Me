@@ -16,5 +16,19 @@ module.exports = {
         },
     },
 
+
+    theme: {
+        extend: {
+            colors: {
+                'white': '#ffffff',
+                'bleuciel': '#C9DEEB',
+                'bleudg': '#24ABF9',
+                'bleufd': '#12567D',
+                'orangedg': '#FE5A21',
+                'orangefd': '#EE1710',
+            },
+        },
+    },
+
     plugins: [require('@tailwindcss/forms')],
 };
