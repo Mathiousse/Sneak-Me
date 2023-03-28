@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KeywordController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Models\Keyword;
@@ -32,13 +34,9 @@ Route::get('/orders', function () {
     return view('orders');
 })->middleware(['auth', 'verified'])->name('orders');
 
-Route::get('/categories', function () {
-    return view('categories');
-})->middleware(['auth', 'verified'])->name('categories');
+Route::get('/categories',[CategoryController::class,'index'])->middleware(['auth', 'verified'])->name('categories');
 
-Route::get('/produits', function () {
-    return view('produits');
-})->middleware(['auth', 'verified'])->name('produits');
+Route::get('/produits',[ProductController::class,'index'])->middleware(['auth', 'verified'])->name('produits');
 
 Route::get('/keyword',[KeywordController::class,'index'])->middleware(['auth', 'verified'])->name('keyword');
 

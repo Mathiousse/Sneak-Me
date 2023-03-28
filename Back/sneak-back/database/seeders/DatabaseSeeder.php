@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(5)->create();
         
-        Product::factory(30)->create();
+        Product::factory(10)->create();
 
         User::create([
             'name' => 'Mathieu',
