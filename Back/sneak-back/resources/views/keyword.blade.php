@@ -1,17 +1,54 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Mots-clés') }}
-        </h2>
+        {{ __('Mot-Clés') }}
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __('Vos mots-clés') }}
-                </div>
-            </div>
-        </div>
+    <h2>{{ __('Les Mot-Clés du Chatbot') }}</h2>
+    <br>
+
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Nom de la réponse
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Réponses
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Mot-Clés
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Type de réponse
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($responses as $response)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{ $response->name }}
+                        </th>
+                        <td class="px-6 py-4">
+                            @foreach (explode('---', $response->message) as $responseSingle)
+                                {{ $responseSingle }}
+                                <br>
+                            @endforeach
+
+                        </td>
+                        <td class="px-6 py-4">
+                            @foreach ($response->keywords as $keyword)
+                                {{ $keyword->keyword }},
+                            @endforeach
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $response->type }}
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </x-app-layout>

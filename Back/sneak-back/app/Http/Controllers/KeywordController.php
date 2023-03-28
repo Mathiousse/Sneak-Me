@@ -1,35 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Keyword;
+use App\Models\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class MessageController extends Controller
+class KeywordController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $q = $request->q;
-        $keywords = explode(' ', $q);
-        $response = Keyword::where(function($query) use ($keywords) {
-            foreach($keywords as $keyword) {
-                $query->orWhere('keyword', 'like', "%$keyword%");
-            }
-        })->first();
-        if ($response) {
-            return response()->json($response->response);
-        }
-        else {
-            $response = "Désolé, je n'ai pas bien compris ce que vous vouliez dire, veuillez réessayer.---Oups, je n'ai pas compris ce que vous avez envoyé, veuillez réessayer.";
-            return response()->json($response);
-        }
-        
-        
+        $keywords = Keyword::all();
+        $responses = Response::all();
+        return view('keyword', compact('keywords'), compact('responses'));
     }
 
     /**
@@ -63,4 +51,7 @@ class MessageController extends Controller
     {
         //
     }
-}
+}       {
+        //
+    }
+}    
