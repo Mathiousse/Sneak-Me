@@ -4,9 +4,11 @@
     <div class="h-full bg-bleufd px-3 py-4 overflow-y-auto flex flex-col justify-between">
         <ul class="space-y-2 font-medium">
             <li>
-                <div>
-                    <span class="ml-3">Bienvenue, Sophie</span>
-                    <img class="h-auto max-w-full" src="{{ url('/oeuf.jpg') }}" alt="image description">
+                <div class="flex flex-col items-center mb-6">
+                    <img class="flex h-20 w-20 rounded-full content-center"
+                        src="https://i.ibb.co/Dgf1cW8/alen-alen-wer-1.jpg" alt="image description">
+                    <span class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white">Bienvenue,
+                        Sophie</span>
                 </div>
             </li>
             <li>
@@ -122,14 +124,10 @@
         </ul>
         <div href="#" class="flex justify-center">
             <?xml version="1.0" encoding="utf-8"?>
-            <?xml version="1.0" encoding="utf-8"?>
-            <!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-            <?xml version="1.0" encoding="utf-8"?>
-            <!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-            <svg version="1.1" id="Calque_2_00000080178973748945775020000016798577185982754969_"
-                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                y="0px" viewBox="0 0 313.5 195.2" style="enable-background:new 0 0 313.5 195.2;"
-                xml:space="preserve">
+            <svg height="125px" width="125px" version="1.1"
+                id="Calque_2_00000080178973748945775020000016798577185982754969_" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 313.5 195.2"
+                style="enable-background:new 0 0 313.5 195.2;" xml:space="preserve">
                 <style type="text/css">
                     .st0 {
                         fill: #FFFFFF;

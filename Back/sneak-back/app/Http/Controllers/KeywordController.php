@@ -51,7 +51,4 @@ class KeywordController extends Controller
     {
         //
     }
-}       {
-        //
-    }
-}    
+} 

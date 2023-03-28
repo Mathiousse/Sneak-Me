@@ -3,7 +3,7 @@
         {{ __('Mot-Clés') }}
     </x-slot>
 
-    <h2>{{ __('Les Mot-Clés du Chatbot') }}</h2>
+    <h2 class="font-medium">{{ __('Les Mot-Clés du Chatbot') }}</h2>
     <br>
 
     <div class="relative overflow-x-auto">
@@ -40,7 +40,8 @@
                         </td>
                         <td class="px-6 py-4">
                             @foreach ($response->keywords as $keyword)
-                                {{ $keyword->keyword }},
+                                {{ $keyword->keyword }}
+                                <br>
                             @endforeach
                         </td>
                         <td class="px-6 py-4">
