@@ -77,9 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch('http://localhost:8000/api/chatbot?q=' + message)
             .then(response => response.json())
             .then(data => {
-                const reponses = data.split("---");
-                const reponseAleatoire = reponses[Math.floor(Math.random() * reponses.length)];
-                addMessage('bot', reponseAleatoire)
+                if (data.type === "message") {
+                    data = data.message
+                    const reponses = data.split("---");
+                    const reponseAleatoire = reponses[Math.floor(Math.random() * reponses.length)];
+                    addMessage('bot', reponseAleatoire)
+                }
+
             })
         input.value = ""
     })
@@ -90,18 +94,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function addMessage(role, message) {
-    // split("|||"), utiliser un foreach pour envoyer un message pour tous les éléments du tableau que tu as
-    // "Prankex".split("|||") = ["Prankex"]
-    // "Prankex|||Marex".split("|||") = ["Prankex", "Marex"]
-    array.forEach(element => {
-
+    message = message.split("|||")
+    message.forEach(element => {
+        let div = document.createElement('div')
+        div.classList.add(role, 'message')
+        let p = document.createElement('p')
+        p.innerText = element
+        div.appendChild(p)
+        document.querySelector(".messages").appendChild(div)
     });
-    let div = document.createElement('div')
-    div.classList.add(role, 'message')
-    let p = document.createElement('p')
-    p.innerText = message
-    div.appendChild(p)
-    document.querySelector(".messages").appendChild(div)
     document.querySelector("textarea").value = ""
     document.querySelector(".messages").scrollTo(0, document.body.scrollHeight);
 }

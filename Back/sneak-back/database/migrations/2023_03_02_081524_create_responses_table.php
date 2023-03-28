@@ -18,6 +18,8 @@ class CreateResponsesTable extends Migration
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
             $table->text('message');
+            $table->string('type', 255);
+            $table->string('name', 255);
             $table->timestamps();
         });
 

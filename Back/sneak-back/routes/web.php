@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\KeywordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Models\Keyword;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,13 +40,9 @@ Route::get('/produits', function () {
     return view('produits');
 })->middleware(['auth', 'verified'])->name('produits');
 
-Route::get('/keyword', function () {
-    return view('keyword');
-})->middleware(['auth', 'verified'])->name('keyword');
+Route::get('/keyword',[KeywordController::class,'index'])->middleware(['auth', 'verified'])->name('keyword');
 
-Route::get('/user', function () {
-    return view('user');
-})->middleware(['auth', 'verified'])->name('user');
+Route::get('/user',[UserController::class,'index'])->middleware(['auth', 'verified'])->name('user');
 
 Route::get('/setting', function () {
     return view('setting');

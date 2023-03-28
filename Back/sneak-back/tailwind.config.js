@@ -30,5 +30,9 @@ module.exports = {
         },
     },
 
+    variants: {
+        backgroundColor: ['active', 'responsive', 'hover', 'focus', 'current']
+    },
+
     plugins: [require('@tailwindcss/forms')],
 };

@@ -25,20 +25,28 @@ class DatabaseSeeder extends Seeder
         Product::factory(30)->create();
 
         User::create([
-            'name' => 'Mathieu Capon',
+            'name' => 'Mathieu',
+            'surname' =>'Capon',
             'email' => 'mathieu.capon@viacesi.fr',
             'password' => '$2y$10$582MwgnJGKCC2Bu.ApvleOZ8yCnBLnV/rPZuX.hSZOKGgKeNqJDxG', // discord for password
-            'role' => 'admin'
+            'role' => 'admin',
+            'phone' => '0782641856'
         ]);
 
         Response::create([
-            'message' => "Bonjour, je suis Marc de chez Sneak Me !---Que voulez-vous aujourd'hui ?"
+            'message' => "Bonjour, je suis Marc de chez Sneak Me !---Que voulez-vous aujourd'hui ?",
+            'type' => 'message',
+            'name' => 'Bonjour',
         ]);
         Response::create([
-            'message' => "NON PAS LES CORTEZ---Excusez-moi, êtes-vous low ?"
+            'message' => "NON PAS LES CORTEZ---Excusez-moi, êtes-vous low ?",
+            'type' => 'message',
+            'name' => 'Cortez',
         ]);
         Response::create([
-            'message' => "Voici le mail pour notre support : |||prankex@prankom.fr"
+            'message' => "Voici le mail pour notre support : |||prankex@prankom.fr",
+            'type' => 'message',
+            'name' => 'Support',
         ]);
 
         Keyword::create([
