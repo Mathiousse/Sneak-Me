@@ -15,8 +15,12 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         $q = $request->q;
-        $response = Keyword::where('keyword', 'like', "%$q%")
-        ->first();
+        $keywords = explode(' ', $q);
+        $response = Keyword::where(function($query) use ($keywords) {
+            foreach($keywords as $keyword) {
+                $query->orWhere('keyword', 'like', "%$keyword%");
+            }
+        })->first();
         if ($response) {
             return response()->json($response->response->message);
         }

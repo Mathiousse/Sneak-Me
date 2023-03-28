@@ -37,21 +37,29 @@ class DatabaseSeeder extends Seeder
         Response::create([
             'message' => "NON PAS LES CORTEZ---Excusez-moi, êtes-vous low ?"
         ]);
+        Response::create([
+            'message' => "Voici le mail pour notre support : |||prankex@prankom.fr"
+        ]);
+
         Keyword::create([
             'keyword' => 'bonjour',
-            'message_id' => 1,
+            'response_id' => 1,
         ]);
         Keyword::create([
             'keyword' => 'slt',
-            'message_id' => 1,
+            'response_id' => 1,
         ]);
         Keyword::create([
             'keyword' => 'salut',
-            'message_id' => 1,
+            'response_id' => 1,
         ]);
         Keyword::create([
             'keyword' => 'cortez',
-            'message_id' => 2,
+            'response_id' => 2,
+        ]);
+        Keyword::create([
+            'keyword' => 'support',
+            'response_id' => 3,
         ]);
     }
 }
