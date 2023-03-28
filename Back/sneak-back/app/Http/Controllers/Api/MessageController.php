@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Keyword;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -12,11 +14,18 @@ class MessageController extends Controller
      */
     public function index(Request $request)
     {
-        $q = $request->query('q');
-        if (str_contains($q, 'cortez')) {
-            return response()->json('NON PAS LES CORTEZ');
-        };
-        return response()->json('Salut, ' . $q);
+        $q = $request->q;
+        $response = Keyword::where('keyword', 'like', "%$q%")
+        ->first();
+        if ($response) {
+            return response()->json($response->response->message);
+        }
+        else {
+            $response = "Désolé, je n'ai pas bien compris ce que vous vouliez dire, veuillez réessayer.---Oups, je n'ai pas compris ce que vous avez envoyé, veuillez réessayer.";
+            return response()->json($response);
+        }
+        
+        
     }
 
     /**
