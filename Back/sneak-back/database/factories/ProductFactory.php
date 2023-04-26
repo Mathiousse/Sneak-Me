@@ -23,7 +23,6 @@ class ProductFactory extends Factory
             'price' => fake()->numberBetween(50,10000),
             'image' => fake()->imageUrl(),
             'stock' => fake()->numberBetween(0, 100),
-            'category_id' => Category::all()->random()->id,
         ];
     }
 }

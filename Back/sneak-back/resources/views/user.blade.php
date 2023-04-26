@@ -23,10 +23,10 @@
                         {{ __('téléphone') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        {{ __('Crée le') }}
+                        {{ __('Créé le') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        {{ __('Modifié le') }}
+                        {{ __('Dernière modification le') }}
                     </th>
                 </tr>
             </thead>

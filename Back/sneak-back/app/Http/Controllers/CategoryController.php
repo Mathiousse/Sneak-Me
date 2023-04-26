@@ -21,17 +21,21 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('create/categories', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $category = Category::create([
+        'name' => $request->input('name', 'DEFAULT_VALUE_HERE'),
+    ]);
 
+    return redirect()->route('categories', $category);
+}
     /**
      * Display the specified resource.
      */
@@ -45,15 +49,27 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $categories = Category::find($category);
+        return view('edits/categories', compact('category', 'categories'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+        ]);
+    
+        $category->update([
+            'name' => $validated['name'],
+        ]);
+
+        $Products = $category->products()->pluck('products.name')->toArray();
+    
+        return redirect()->route('categories');
     }
 
     /**
@@ -61,6 +77,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+    return redirect()->route('categories')
+        ->with('success', 'Le produit a été supprimé avec succès.');
     }
 }

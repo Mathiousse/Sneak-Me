@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/chatbot', [MessageController::class, 'index']);
+
+Route::group([
+    'middleware' => 'auth.optional:api'
+], function () {
+    Route::get('/chatbot', [MessageController::class, 'index']);
+    Route::apiResource('products', MessageController::class);
+});
+
+// Route::middleware('auth.optional:api')->get('/api/chatbot', function(Request $request) {
+//     return $request->user();
+// });

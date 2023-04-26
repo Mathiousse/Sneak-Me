@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../../../wamp64/www/laravelPrankexx/larazon"
+		},
+		{
+			"path": "../../../../Local Documents/School/classes work/Second js class"
+		},
+		{
+			"path": "../../../../Local Documents/School/classes work 2/js work not corrupted/prisma/prisma"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Sneak-Me"
+	}
+}

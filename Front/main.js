@@ -83,7 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     const reponseAleatoire = reponses[Math.floor(Math.random() * reponses.length)];
                     addMessage('bot', reponseAleatoire)
                 }
-
+                if (data.type === "produit") {
+                    // code pour afficher un produit
+                    console.log("produit")
+                }
             })
         input.value = ""
     })

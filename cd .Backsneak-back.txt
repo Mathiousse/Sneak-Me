@@ -1,0 +1,5 @@
+cd .\Back\sneak-back\
+php artisan serv
+
+cd .\Back\sneak-back\
+npm run dev

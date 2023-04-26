@@ -9,8 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Category extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+    ];
     public function products()
-    {
-        return $this->belongsToMany(Product::class);
-    }
+{
+    return $this->belongsToMany(Product::class);
+}
 }

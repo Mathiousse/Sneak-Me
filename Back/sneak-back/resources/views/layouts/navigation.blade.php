@@ -3,14 +3,47 @@
     aria-label="Sidebar">
     <div class="h-full bg-bleufd px-3 py-4 overflow-y-auto flex flex-col justify-between">
         <ul class="space-y-2 font-medium">
-            <li>
-                <div class="flex flex-col items-center mb-6">
-                    <img class="flex h-20 w-20 rounded-full content-center"
-                        src="https://i.ibb.co/Dgf1cW8/alen-alen-wer-1.jpg" alt="image description">
-                    <span class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white">Bienvenue,
-                        Sophie</span>
-                </div>
-            </li>
+            <!-- Settings Dropdown -->
+            <div class="hidden sm:flex sm:items-center w-full">
+                <x-dropdown align="right" width="full">
+                    <x-slot name="trigger">
+                        <button
+                            class=" w-full justify-center inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 hover:text-gray-700 dark:hover:bg-gradient-to-r from-orangedg to-orangefd dark:focus-within:bg-gradient-to-r from-orangedg to-orangefd focus:outline-none transition ease-in-out duration-300">
+                            {{-- <div>{{ Auth::user()->name }}</div> --}}
+                            <div class="flex flex-col items-center">
+                                <img class="flex h-20 w-20 rounded-full content-center"
+                                    src="https://i.ibb.co/Dgf1cW8/alen-alen-wer-1.jpg" alt="image description">
+                            </div>
+
+                            <div class="ml-1">
+                                <svg class="fill-white h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path class="fill-white" fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </button>
+                        <span class="block p-2 text-center text-gray-900 rounded-lg dark:text-white">Bienvenue,
+                            {{ Auth::user()->name }}</span>
+                    </x-slot>
+
+                    <x-slot name="content">
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Profil') }}
+                        </x-dropdown-link>
+
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')"
+                                onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                                {{ __('Déconnexion') }}
+                            </x-dropdown-link>
+                        </form>
+                    </x-slot>
+                </x-dropdown>
+            </div>
             <li>
                 <a href="{{ route('dashboard') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd {{ Route::currentRouteName() === 'dashboard' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
@@ -64,8 +97,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('produits') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd {{ Route::currentRouteName() === 'produits' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
+                <a href="{{ route('products') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd {{ Route::currentRouteName() === 'products' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
                     <svg id="shopping-bag-add" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 28.421 29.333">
                         <path id="Tracé_39" data-name="Tracé 39"
@@ -91,6 +124,30 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('response') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd  {{ Route::currentRouteName() === 'response' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
+                    <svg height="20px" width="20px" version="1.1" id="_x32_"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 512 512" xml:space="preserve" fill="#ffffff">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <style type="text/css">
+                                .st0 {
+                                    fill: #ffffff;
+                                }
+                            </style>
+                            <g>
+                                <path class="st0"
+                                    d="M255.995,3.769C114.605,3.769,0,88.187,0,217.102c0,79.518,49.369,148.08,139.713,201.623l148.909,89.506 l1.677-82.807C422.615,418.055,512,340.045,512,217.102C512,88.187,397.386,3.769,255.995,3.769z M288.175,387.319l-35.31,1.966 l-0.717,35.366l-0.346,16.928l-92.635-55.686C78.876,338.313,38.161,281.519,38.161,217.102 c0-115.006,109.583-175.172,217.834-175.172s217.844,60.167,217.844,175.172C473.839,317.211,404.429,380.843,288.175,387.319z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Réponse</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('user') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd  {{ Route::currentRouteName() === 'user' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -109,19 +166,9 @@
                     <span class="flex-1 ml-3 whitespace-nowrap">Utilisateurs</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('setting') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd {{ Route::currentRouteName() === 'setting' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                        viewBox="0 0 24.827 28.537">
-                        <path id="Tracé_45" data-name="Tracé 45"
-                            d="M26.125,21.4a3.388,3.388,0,0,0,4.71,1.31l0,0,.512-.306a10.244,10.244,0,0,0,3.274,1.955v.61a3.451,3.451,0,1,0,6.9,0v-.61A10.244,10.244,0,0,0,44.8,22.4l.514.307A3.39,3.39,0,0,0,50.025,21.4a3.637,3.637,0,0,0-1.265-4.875h0l-.51-.3a11.186,11.186,0,0,0,0-3.912l.51-.3a3.637,3.637,0,0,0,1.265-4.875,3.39,3.39,0,0,0-4.714-1.308l-.512.306a10.243,10.243,0,0,0-3.277-1.951v-.61a3.451,3.451,0,1,0-6.9,0v.61a10.243,10.243,0,0,0-3.274,1.957l-.514-.308a3.389,3.389,0,0,0-4.714,1.308,3.637,3.637,0,0,0,1.265,4.875h0l.51.3a11.186,11.186,0,0,0,0,3.912l-.51.3A3.642,3.642,0,0,0,26.125,21.4ZM38.074,9.513a4.68,4.68,0,0,1,4.6,4.756,4.6,4.6,0,1,1-9.2,0A4.68,4.68,0,0,1,38.074,9.513Z"
-                            transform="translate(-25.66)" fill="#fff" />
-                    </svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Réglages</span>
-                </a>
-            </li>
+
         </ul>
+
         <div href="#" class="flex justify-center">
             <?xml version="1.0" encoding="utf-8"?>
             <svg height="125px" width="125px" version="1.1"

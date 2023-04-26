@@ -21,7 +21,7 @@ module.exports = {
         extend: {
             colors: {
                 'white': '#ffffff',
-                'bleuciel': '#C9DEEB',
+                'bleuciel': '#3E84AC',
                 'bleudg': '#24ABF9',
                 'bleufd': '#12567D',
                 'orangedg': '#FE5A21',
@@ -36,3 +36,4 @@ module.exports = {
 
     plugins: [require('@tailwindcss/forms')],
 };
+
