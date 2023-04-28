@@ -29,7 +29,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'surname' => 'required|string',
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|string',
+        ]);
+
+        return redirect()->route('user');
     }
 
     /**
@@ -43,24 +50,44 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
-    {
-        //
-    }
+    public function edit($id)
+{
+    $user = User::find($id);
+    return view('edits.user', compact('user'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            'phone' => 'required|string|max:15',
+        ]);
+    
+        $user->update([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+        ]);
+    
+        return redirect()->route('user')->with('success', 'L\'utilisateur a été modifié avec succès.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+    return redirect()->route('user')
+        ->with('success', 'Le produit a été supprimé avec succès.');
     }
 }

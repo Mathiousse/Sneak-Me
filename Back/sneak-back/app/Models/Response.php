@@ -10,6 +10,15 @@ class Response extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'message',
+        'type',
+    ];
+
+    protected $attributes = [
+        'name' => 'Nom de la réponse',
+    ];
+
      /**
      * Get the keywords for the message.
      */

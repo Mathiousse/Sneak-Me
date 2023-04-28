@@ -16,23 +16,29 @@ class KeywordController extends Controller
     public function index(Request $request)
     {
         $keywords = Keyword::all();
-        $responses = Response::all();
-        return view('keyword', compact('keywords'), compact('responses'));
+        return view('keywords', compact('keywords'));
     }
 
     public function create()
     {
         $keywords = Keyword::all();
-        return view('create/keyword', compact('keywords'));
+        $responses = Response::all();
+        return view('create/keywords', compact('responses'), compact('keywords'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $keyword = new Keyword();
+    $keyword->keyword = $request->input('keyword');
+    $keyword->save();
+
+    return redirect()->route('keywords', $keyword);
+}
+
+
 
     /**
      * Display the specified resource.
@@ -49,7 +55,7 @@ class KeywordController extends Controller
     {
         $keywords = Keyword::all();
         $responses = Response::all();
-        return view('edits/keyword', compact('keyword', 'keywords', 'responses'));
+        return view('edits/keywords', compact('keywords', 'responses'));
     }
     
 
@@ -61,11 +67,15 @@ class KeywordController extends Controller
         //
     }
 
-    /**
+       /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy(Keyword $keyword)
+{
+    $keyword->delete();
+
+    return redirect()->route('keywords')
+        ->with('success', 'Le mot-clé a été supprimé avec succès.');
+}
+
 } 

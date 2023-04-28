@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Mot-Clés') }}
+        {{ __('Mots-Clés') }}
     </x-slot>
 
-    <h2 class="font-medium">{{ __('Les Mot-Clés du Chatbot') }}</h2>
+    <h2 class="font-medium">{{ __('Les Mots-Clés du Chatbot') }}</h2>
     <br>
 
-    <a href="{{ route('keyword.create') }}" type="button"
+    <a href="{{ route('keywords.create') }}" type="button"
         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajouter
         un mot clé
     </a>
@@ -31,11 +31,16 @@
                             {{ $keyword->keyword }}
                         </th>
                         <td class="px-6 py-4">
-                            <a href="{{ route('keyword.edit', $keyword) }}"
+                            <a href="{{ route('keywords.edit', $keyword) }}"
                                 class="edit font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                 Éditer</a>
-                            <a onclick="deleteThing" href="#"
-                                class="delete font-medium text-red-600 dark:text-red-500 hover:underline">Supprimer</a>
+                            <form action="{{ route('keywords.destroy', $keyword) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce mot-clé ?')"
+                                    class="delete font-medium text-red-600 dark:text-red-500 hover:underline">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

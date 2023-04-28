@@ -22,7 +22,7 @@ class Product extends Model
         'description' => 'Description du produit',
     ];
     public function categories()
-{
-    return $this->belongsToMany(Category::class);
-}
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

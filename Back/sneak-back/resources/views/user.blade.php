@@ -28,6 +28,9 @@
                     <th scope="col" class="px-6 py-3">
                         {{ __('Dernière modification le') }}
                     </th>
+                    <th scope="col" class="px-6 py-3">
+                        {{ __('Action') }}
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +54,17 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->updated_at }}
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="{{ route('user.edit', $user) }}"
+                                class="edit font-medium text-blue-600 dark:text-blue-500 hover:underline">Éditer</a>
+                            <form action="{{ route('user.destroy', $user) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')"
+                                    class="delete font-medium text-red-600 dark:text-red-500 hover:underline">Supprimer</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

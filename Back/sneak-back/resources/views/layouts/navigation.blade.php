@@ -112,8 +112,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('keyword') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd {{ Route::currentRouteName() === 'keyword' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
+                <a href="{{ route('keywords') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd {{ Route::currentRouteName() === 'keywords' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 28.421 26.842">
                         <path id="cle"

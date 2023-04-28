@@ -11,13 +11,10 @@ class Keyword extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'response',
         'keyword',
-        'type',
     ];
 
-    public function responses(): BelongsTo
+    public function responses()
     {
         return $this->belongsTo(Response::class);
     }
