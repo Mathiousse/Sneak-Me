@@ -6,11 +6,6 @@
     <h2 class="font-medium">{{ __('Les réponses du Chatbot') }}</h2>
     <br>
 
-    <a href="{{ route('response.create') }}" type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Ajouter
-        une réponse
-    </a>
-
     <div class="relative overflow-x-auto">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -50,10 +45,23 @@
                         </th>
                         <td class="px-6 py-4">
                             @foreach ($keywords as $keyword)
-                                <div class="keyword">
-                                    <input type="checkbox" id="{{ $keyword->id }}" name="keywords[]"
-                                        value="{{ $keyword->id }}">
-                                    <label for="{{ $keyword->id }}">{{ $keyword->keyword }}</label>
+                                <div>
+                                    @if (App\Models\Response::whereHas('keywords', function ($query) use ($keyword) {
+                                            $query->where('id', $keyword->id);
+                                        })->exists())
+                                        <input disabled id="{{ $keyword->keyword }}" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="{{ $keyword->keyword }}"
+                                            class="ml-2 text-sm font-medium text-gray-400 dark:text-gray-500"><i>{{ $keyword->keyword }}</i></label>
+                                    @else
+                                        <input
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                            type="checkbox" id="{{ $keyword->keyword }}" name="keywords[]"
+                                            value="{{ $keyword->id }}"
+                                            {{ isset($response) && $response->keywords->contains($keyword->id) ? 'checked' : '' }}>
+                                        <label class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                                            for="{{ $keyword->keyword }}">{{ $keyword->keyword }}</label>
+                                    @endif
                                 </div>
                             @endforeach
                         </td>

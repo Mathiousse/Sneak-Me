@@ -34,19 +34,19 @@ class ResponseController extends Controller
     public function store(Request $request)
 {
     $request->validate([
-        
         'message' => 'required|string',
         'keywords' => 'array',
         'type' => 'required|string',
-        
     ]);
 
     $response = Response::create($request->all());
-    $keywords = [$request->keywords];
-    if (isset($request->keywords)) {
-        $response->keywords()->attach($keywords);
+    if (isset($request->keywords)) {       
+        foreach ($request->keywords as $keyword) {
+            $keyword = Keyword::find($keyword);
+            $keyword->response()->associate($response->id);
+            $keyword->save();
+        }
     }
-    // get the keywords from request->keyword, loop on it, find the keyword with the good ID and use attach() to
 
     return redirect()->route('response');
 }
@@ -85,12 +85,29 @@ class ResponseController extends Controller
     
         $response->update([
             'message' => $request->input('message'),
-            'keyword' => $request->input('keyword'),
+            'keywords' => $request->input('keywords'),
             'type' => $request->input('type'),
-            
         ]);
-    
-        return redirect()->route('response')->with('success', 'L\'utilisateur a été modifié avec succès.');
+        if (isset($request->keywords)) {       
+            foreach ($request->keywords as $keyword) {
+                $keyword = Keyword::find($keyword);
+                $keyword->response()->associate($response->id);
+                $keyword->save();
+            }
+            // Dissociate the keywords that are not in the request
+            $response->keywords()->whereNotIn('id', $request->keywords)->get()->each(function ($keyword) {
+                $keyword->response()->dissociate();
+                $keyword->save();
+            });
+        }
+        else {
+            // Dissociate all keywords if none are checked
+            $response->keywords()->get()->each(function ($keyword) {
+                $keyword->response()->dissociate();
+                $keyword->save();
+            });
+        }
+        return redirect()->route('response');
     }
 
     /**
@@ -98,6 +115,11 @@ class ResponseController extends Controller
      */
     public function destroy(Response $response)
     {
+        $response = Response::findOrFail($response->id);
+        foreach ($response->keywords as $keyword) {
+            $keyword->response()->dissociate();
+            $keyword->save();
+        }
         $response->delete();
 
     return redirect()->route('response')

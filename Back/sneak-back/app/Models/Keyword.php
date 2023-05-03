@@ -14,7 +14,7 @@ class Keyword extends Model
         'keyword',
     ];
 
-    public function responses()
+    public function response()
     {
         return $this->belongsTo(Response::class);
     }
