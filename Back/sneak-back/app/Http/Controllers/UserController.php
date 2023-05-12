@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user', compact('users'));
+        return view('users/index', compact('users'));
     }
 
     /**
@@ -53,7 +53,7 @@ class UserController extends Controller
     public function edit($id)
 {
     $user = User::find($id);
-    return view('edits.user', compact('user'));
+    return view('users/edit', compact('user'));
 }
 
 
@@ -76,7 +76,7 @@ class UserController extends Controller
             'phone' => $request->input('phone'),
         ]);
     
-        return redirect()->route('user')->with('success', 'L\'utilisateur a été modifié avec succès.');
+        return redirect()->route('user')->with('success', "L'utilisateur ". $user->name .' a bien été modifié.');
     }
     
 
@@ -88,6 +88,6 @@ class UserController extends Controller
         $user->delete();
 
     return redirect()->route('user')
-        ->with('success', 'Le produit a été supprimé avec succès.');
+    ->with('success', "L'utilisateur ". $user->name .' a bien été supprimé.');
     }
 }

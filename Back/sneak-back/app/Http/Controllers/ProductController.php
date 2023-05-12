@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('products', compact('products'));
+        return view('products/index', compact('products'));
     }
 
     /**
@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('create/products', compact('categories'));
+        return view('products/create', compact('categories'));
     }
     /**
      * Store a newly created resource in storage.
@@ -47,7 +47,7 @@ class ProductController extends Controller
             $product->categories()->attach($request->categories);
         }
 
-        return redirect()->route('products');
+        return redirect()->route('products')->with('success', 'Le produit '. $product->name .' a bien été créé.');
     }
 
     /**
@@ -64,7 +64,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('edits/products', compact('product', 'categories'));
+        return view('products/edit', compact('product', 'categories'));
     }
 
     /**
@@ -102,7 +102,7 @@ class ProductController extends Controller
         $product->categories()->detach();
     }
 
-    return redirect()->route('products');
+    return redirect()->route('products')->with('success', 'Le produit '. $product->name .' a bien été modifié.');
 }
 
     /**
@@ -113,7 +113,7 @@ class ProductController extends Controller
     $product->delete();
 
     return redirect()->route('products')
-        ->with('success', 'Le produit a été supprimé avec succès.');
+    ->with('success', 'Le produit '. $product->name .' a bien été supprimé.');
 }
 
 }

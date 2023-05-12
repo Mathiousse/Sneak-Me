@@ -12,6 +12,7 @@ class Keyword extends Model
 
     protected $fillable = [
         'keyword',
+        'weight'
     ];
 
     public function response()

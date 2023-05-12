@@ -1,10 +1,11 @@
 {
 	"folders": [
 		{
-			"path": "."
+			"name": "PM-2",
+			"path": "../../../../Local Documents/Work/mypacome/PM-2"
 		},
 		{
-			"path": "../../../../../../wamp64/www/laravelPrankexx/larazon"
+			"path": "."
 		}
 	],
 	"settings": {

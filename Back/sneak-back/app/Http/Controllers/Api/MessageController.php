@@ -16,7 +16,6 @@ class MessageController extends Controller
     public function index(Request $request)
     {
 
-        // dd(Auth::user());
         // if (Auth::check()) {
         //     dd(Auth::user());
         // } else {

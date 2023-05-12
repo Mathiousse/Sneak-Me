@@ -1,10 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Mot-Clés') }}
+        {{ __('Mots-Clés') }}
     </x-slot>
 
-    <h2 class="font-medium">{{ __('Les Mot-Clés du Chatbot') }}</h2>
+    <h2 class="font-medium">{{ __('Les Mots-Clés du Chatbot') }}</h2>
     <br>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="relative overflow-x-auto">
         @if ($errors->any())
@@ -16,13 +26,17 @@
                 </ul>
             </div>
         @endif
-        <form enctype='multipart/form-data' method="post" action="{{ route('keywords.store') }}">
+        <form method="POST" action="{{ route('keywords.update', $keyword) }}">
             @csrf
+            @method('PUT')
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
                             Mot clé
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Importance
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -34,7 +48,12 @@
                         <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                             <input type="text" id="keyword" name="keyword"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Mot clé" required>
+                                placeholder="Mot clé" value="{{ $keyword->keyword }}" required>
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
+                            <input type="number" id="keyword" name="weight" min="1"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Importance" value="{{ $keyword->weight }}" required>
                         </td>
                         <td class="px-6 py-4">
                             <button type="submit"
@@ -43,8 +62,12 @@
                         </td>
                     </tr>
                 </tbody>
-
             </table>
+            <br>
+            <i class="text-sm">*Si un message contient plusieurs mot-clés, celui avec la plus grande importance sera
+                celui
+                interprété.
+            </i>
         </form>
     </div>
 </x-app-layout>

@@ -15,7 +15,7 @@ class ResponseController extends Controller
     {
         $keywords = Keyword::all();
         $responses = Response::all();
-        return view('response', compact('keywords'), compact('responses'));
+        return view('response/index', compact('keywords'), compact('responses'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ResponseController extends Controller
     {
         $keywords = Keyword::all();
         $responses = Response::all();
-        return view('create/response', compact('keywords'), compact('responses'));
+        return view('response/create', compact('keywords'), compact('responses'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ResponseController extends Controller
         }
     }
 
-    return redirect()->route('response');
+    return redirect()->route('response')->with('success', 'La réponse '. $response->message .' a bien été créée.');
 }
 
     /**
@@ -67,7 +67,7 @@ class ResponseController extends Controller
         $keywords = Keyword::all();
         $selectedKeywords = $response->keywords->pluck('id')->toArray();
     
-        return view('edits/response', compact('response', 'keywords', 'selectedKeywords'));
+        return view('response/edit', compact('response', 'keywords', 'selectedKeywords'));
     }
     
 
@@ -107,7 +107,7 @@ class ResponseController extends Controller
                 $keyword->save();
             });
         }
-        return redirect()->route('response');
+        return redirect()->route('response')->with('success', 'La réponse '. $response->message .' a bien été modifiée.');
     }
 
     /**
@@ -123,6 +123,6 @@ class ResponseController extends Controller
         $response->delete();
 
     return redirect()->route('response')
-        ->with('success', 'Le produit a été supprimé avec succès.');
+    ->with('success', 'La réponse '. $response->message .' a bien été supprimée.');
     }
 }

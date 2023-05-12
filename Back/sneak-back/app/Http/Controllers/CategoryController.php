@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('categories', compact('categories'));
+        return view('categories/index', compact('categories'));
     }
 
     /**
@@ -22,7 +22,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('create/categories', compact('categories'));
+        return view('categories/create', compact('categories'));
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoryController extends Controller
         'name' => $request->input('name', 'DEFAULT_VALUE_HERE'),
     ]);
 
-    return redirect()->route('categories', $category);
+    return redirect()->route('categories', $category)->with('success', 'La catégorie '. $category->name .' a bien été créée.');
 }
     /**
      * Display the specified resource.
@@ -50,7 +50,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $categories = Category::find($category);
-        return view('edits/categories', compact('category', 'categories'));
+        return view('categories/edit', compact('category', 'categories'));
     }
     
 
@@ -69,7 +69,7 @@ class CategoryController extends Controller
 
         $Products = $category->products()->pluck('products.name')->toArray();
     
-        return redirect()->route('categories');
+        return redirect()->route('categories')->with('success', 'La catégorie '. $category->name .' a bien été modifiée.');
     }
 
     /**
@@ -80,6 +80,6 @@ class CategoryController extends Controller
         $category->delete();
 
     return redirect()->route('categories')
-        ->with('success', 'Le produit a été supprimé avec succès.');
+    ->with('success', 'La catégorie '. $category->name .' a bien été supprimée.');
     }
 }

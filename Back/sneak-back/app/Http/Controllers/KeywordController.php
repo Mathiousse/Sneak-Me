@@ -16,14 +16,14 @@ class KeywordController extends Controller
     public function index(Request $request)
     {
         $keywords = Keyword::all();
-        return view('keywords', compact('keywords'));
+        return view('keywords/index', compact('keywords'));
     }
 
     public function create()
     {
         $keywords = Keyword::all();
         $responses = Response::all();
-        return view('create/keywords', compact('responses'), compact('keywords'));
+        return view('keywords/create', compact('responses'), compact('keywords'));
     }
 
     /**
@@ -31,11 +31,13 @@ class KeywordController extends Controller
      */
     public function store(Request $request)
 {
-    $keyword = new Keyword();
-    $keyword->keyword = $request->input('keyword');
-    $keyword->save();
+    $request->validate([
+        'keyword' => 'required|string',
+        'weight' => 'required|numeric',
+    ]);
+    $keyword = Keyword::create($request->all());
 
-    return redirect()->route('keywords', $keyword);
+    return redirect()->route('keywords', $keyword)->with('success', 'Le mot clé '. $keyword->keyword .' a bien été créé.');
 }
 
 
@@ -53,18 +55,23 @@ class KeywordController extends Controller
      */
     public function edit(Keyword $keyword)
     {
-        $keywords = Keyword::all();
-        $responses = Response::all();
-        return view('edits/keywords', compact('keywords', 'responses'));
+        return view('keywords/edit', compact('keyword'));
     }
     
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Keyword $keyword)
     {
-        //
+        $request->validate([
+            'keyword' => 'required|string',
+            'weight' => 'required|numeric',
+        ]);
+
+        $keyword->update($request->all());
+
+        return redirect()->route('keywords')->with('success', 'Le mot clé '. $keyword->keyword .' a bien été modifié.');
     }
 
        /**
@@ -75,7 +82,7 @@ class KeywordController extends Controller
     $keyword->delete();
 
     return redirect()->route('keywords')
-        ->with('success', 'Le mot-clé a été supprimé avec succès.');
+    ->with('success', 'Le mot clé '. $keyword->keyword .' a bien été supprimé.');
 }
 
 } 

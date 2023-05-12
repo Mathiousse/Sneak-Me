@@ -20,6 +20,7 @@ class CreateKeywordsTable extends Migration
             $table->string('keyword', 255);
             $table->unsignedBigInteger('response_id')->nullable();
             $table->foreign('response_id')->references('id')->on('responses')->nullable();
+            $table->integer('weight')->default(1);
             $table->timestamps();
         });
 
