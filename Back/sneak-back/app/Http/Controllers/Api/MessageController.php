@@ -24,13 +24,24 @@ class MessageController extends Controller
 
         $q = $request->q;
         $keywords = explode(' ', $q);
-        $response = Keyword::where(function($query) use ($keywords) {
-            foreach($keywords as $keyword) {
+        // $response = Keyword::where(function($query) use ($keywords) {
+        //     foreach($keywords as $keyword) {
+        //         $query->orWhere('keyword', 'like', "%$keyword%");
+        //     }
+        // })->first();
+        $keywordsResults = [];
+        foreach($keywords as $keyword) {
+            $response = Keyword::where(function($query) use ($keyword) {
                 $query->orWhere('keyword', 'like', "%$keyword%");
+            })->first();
+            array_push($keywordsResults, $response);
+        }
+        if ($keywordsResults) {
+            // Only run this if there are more than two keywords in the message, then filter which one has the most weight, then run normal response protocol
+            if (count($keywordsResults) > 1) {
+                
             }
-        })->first();
-        if ($response) {
-            return response()->json($response->response);
+            return response()->json($keywordsResults);
         }
         else {
             $response = ["id" => 1, "message" => "Désolé, je n'ai pas bien compris ce que vous vouliez dire, veuillez réessayer.---Oups, je n'ai pas compris ce que vous avez envoyé, veuillez réessayer.", "type" => "message"];
