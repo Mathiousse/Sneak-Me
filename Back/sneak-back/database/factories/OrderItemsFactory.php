@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Orders;
-use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,10 +17,7 @@ class OrderItemsFactory extends Factory
     public function definition(): array
     {
         return [
-            'order_id' => Orders::all()->random->id,
-            'product_id' => Product::all()->random->id,
-            'quantity' => fake()->numberBetween(1,5),
-            'price' => fake()->numberBetween(100,10000),
+            //
         ];
     }
 }

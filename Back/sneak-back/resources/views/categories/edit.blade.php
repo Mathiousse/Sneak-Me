@@ -16,7 +16,6 @@
         </div>
     @endif
 
-
     <div class="relative overflow-x-auto">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -36,9 +35,6 @@
                         <th scope="col" class="px-6 py-3">
                             {{ __('Nom de la catégorie') }}
                         </th>
-                        {{-- <th scope="col" class="px-6 py-3">
-                        {{ __('Nombre de produits associés') }}
-                    </th> --}}
                         <th scope="col" class="px-6 py-3">
                             {{ __('Produits associés') }}
                         </th>
@@ -48,14 +44,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-900">
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
                             <input type="text" name="name" id="name" placeholder="Catégorie"
-                                value="{{ $category->name }}" class="bg-gray-800 text-white py-2 px-4 rounded-md">
+                                value="{{ $category->name }}"
+                                class="bg-gray-800 text-white py-2 px-4 rounded-md w-full">
                         </td>
-                        {{-- <td class="px-6 py-4">
-                            {{ count($category->products) }}
-                        </td> --}}
                         <td>
                             <br>
                             @foreach ($category->products as $product)
@@ -72,7 +66,6 @@
                             </div>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
         </form>

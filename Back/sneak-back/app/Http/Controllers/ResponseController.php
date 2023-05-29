@@ -66,7 +66,6 @@ class ResponseController extends Controller
     {
         $keywords = Keyword::all();
         $selectedKeywords = $response->keywords->pluck('id')->toArray();
-    
         return view('response/edit', compact('response', 'keywords', 'selectedKeywords'));
     }
     

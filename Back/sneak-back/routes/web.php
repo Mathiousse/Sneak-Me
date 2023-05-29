@@ -31,9 +31,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/orders', function () {
-    return view('orders');
-})->middleware(['auth', 'verified'])->name('orders');
+Route::get('/orders',[OrdersController::class,'index'])->middleware(['auth', 'verified'])->name('orders.index');
 
 Route::get('/categories',[CategoryController::class,'index'])->middleware(['auth', 'verified'])->name('categories');
 Route::get('/categories/{category}/edit',[CategoryController::class,'edit'])->middleware(['auth', 'verified'])->name('categories.edit');

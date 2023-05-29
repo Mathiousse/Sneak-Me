@@ -72,14 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         message = input.value
-        addMessage('user', message)
         input.value = ""
+        addMessage('user', message)
         fetch('http://localhost:8000/api/chatbot?q=' + message)
             .then(response => response.json())
             .then(data => {
                 if (data.type === "message") {
-                    data = data.message
-                    const reponses = data.split("---");
+                    message = data.response.message
+                    const reponses = message.split("---");
                     const reponseAleatoire = reponses[Math.floor(Math.random() * reponses.length)];
                     addMessage('bot', reponseAleatoire)
                 }
@@ -87,12 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     // code pour afficher un produit
                     console.log("produit")
                 }
+                if (data.type === "catalogue") {
+                    // code pour afficher le catalogue
+                    addMessage('bot', "Voici notre catalogue de produits : ")
+                }
             })
-        input.value = ""
     })
-
-
-
 })
 
 
@@ -109,8 +109,6 @@ function addMessage(role, message) {
     document.querySelector("textarea").value = ""
     document.querySelector(".messages").scrollTo(0, document.body.scrollHeight);
 }
-
-
 
 
 function showUser() {
@@ -212,5 +210,62 @@ async function writeMessage(message, doISendIt) {
     if (doISendIt) {
         chatbotSubmitButton.click()
     }
-    return null
 }
+
+
+// Récupérer les données des produits chaussures (par exemple, à partir d'une source de données)
+const products = [
+    {
+        id: 1,
+        name: "Chaussure 1",
+        image: "./images/chaussure3.svg",
+        price: 49.99,
+    },
+    {
+        id: 2,
+        name: "Chaussure 2",
+        image: "./images/chaussure1_1.svg",
+        price: 59.99,
+    },
+    {
+        id: 3,
+        name: "Chaussure 3",
+        image: "./images/chaussure3.svg",
+        price: 49.99,
+    },
+    {
+        id: 4,
+        name: "Chaussure 4",
+        image: "./images/chaussure1_1.svg",
+        price: 49.99,
+    },
+    {
+        id: 5,
+        name: "Chaussure 5",
+        image: "./images/chaussure3.svg",
+        price: 49.99,
+    },
+];
+
+// Créer les éléments HTML pour chaque produit
+const slideItems = products.map(product => {
+    return `
+      <li class="splide__slide">
+        <img src="${product.image}" alt="${product.name}">
+        <h3>${product.name}</h3>
+        <h4>${product.price} €</h4>
+        <button>Acheter</button>
+      </li>
+    `;
+});
+
+// Insérer les éléments dans le carousel
+const carouselContainer = document.querySelector('.splide__list');
+carouselContainer.innerHTML = slideItems.join('');
+
+// Initialiser le carousel avec Splide.js
+new Splide('.splide', {
+    perPage: 3,
+    rewind: true,
+    gap: 10,
+}).mount();
