@@ -110,6 +110,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
 {
+    $product->orderItems()->update(['product_id' => null]);
     $product->delete();
 
     return redirect()->route('products')

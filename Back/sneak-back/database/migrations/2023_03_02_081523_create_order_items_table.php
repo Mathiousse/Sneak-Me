@@ -23,6 +23,7 @@ class CreateOrderItemsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity');
             $table->integer('price');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();

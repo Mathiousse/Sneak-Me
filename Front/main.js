@@ -67,14 +67,30 @@ document.addEventListener('DOMContentLoaded', () => {
             formSend.click()
         }
     });
-
+    let type
     const input = form.querySelector('[name="message"]')
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         message = input.value
         input.value = ""
         addMessage('user', message)
-        fetch('http://localhost:8000/api/chatbot?q=' + message)
+        if (message.includes("produit")) {
+            type = "produit"
+        } else if (message.includes("acheter")) {
+            type = "acheter"
+        } else {
+            type = "message"
+        }
+        fetch('http://localhost:8000/api/chatbot', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: message,
+                type: type
+            })
+        })
             .then(response => response.json())
             .then(data => {
                 if (data.type === "message") {
@@ -84,19 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     addMessage('bot', reponseAleatoire)
                 }
                 if (data.type === "produit") {
-                    // code pour afficher un produit
-                    console.log("produit")
+                    addMessage('bot', data.message, 'produit', data.response)
                 }
                 if (data.type === "catalogue") {
                     // code pour afficher le catalogue
-                    addMessage('bot', "Voici notre catalogue de produits : ")
+                    productsData = data.response
+                    addMessage('bot', data.message, 'catalogue', productsData)
                 }
             })
     })
 })
 
-
-function addMessage(role, message) {
+let carrouselCount = 0, splides = []
+async function addMessage(role, message, type = "default", data) {
     message = message.split("|||")
     message.forEach(element => {
         let div = document.createElement('div')
@@ -105,9 +121,90 @@ function addMessage(role, message) {
         p.innerText = element
         div.appendChild(p)
         document.querySelector(".messages").appendChild(div)
+        sleep(1000)
     });
+
+
+
+    if (type === "catalogue") {
+        sleep(10000)
+        const slideItems = data.map(product => {
+            return `
+              <li class="splide__slide">
+                <img src="${"http://localhost:8000/storage/" + product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <h4>${product.price / 100} €</h4>
+                <button onclick="writeMessage('Je souhaiterais en savoir plus sur le produit \\'${product.name}\\'', true)">En savoir +</button>
+              </li>
+            `;
+        });
+
+
+
+        // Insérer les éléments dans le carousel
+
+        let splide = document.createElement('div')
+        splide.classList.add("splide", "splide" + carrouselCount)
+        let track = document.createElement('div')
+        track.classList.add('splide__track')
+        let list = document.createElement('ul')
+        list.classList.add('splide__list', 'list' + carrouselCount)
+        track.appendChild(list)
+        splide.appendChild(track)
+
+        document.querySelector(".messages").appendChild(splide)
+
+        const carouselContainer = document.querySelector('.list' + carrouselCount);
+        carouselContainer.innerHTML = slideItems.join('');
+
+        // Initialiser le carousel avec Splide.js
+        // new Splide('.splide' + carrouselCount, {
+        //     perPage: 2,
+        //     rewind: true,
+        //     gap: 10,
+        // }).mount();
+
+        let elms = document.getElementsByClassName('splide');
+        if (splides.length > 0) {
+            splides.forEach(splide => {
+                splide.destroy()
+            });
+        }
+
+        for (let i = 0; i < elms.length; i++) {
+            let splide = new Splide(elms[i], {
+                perPage: 2,
+                rewind: true,
+                gap: 10,
+            }).mount();
+            splides.push(splide)
+        }
+        carrouselCount += 1
+    } else if (type === "produit") {
+        const productHTML = () => {
+            return `
+            <div class="one-product">
+                <div class="left-container">
+                    <img src="${"http://localhost:8000/storage/" + data.image}" alt="">
+                </div>
+                <div class="right-container">
+                    <h3>${data.name}</h3>
+                    <p>${data.description}</p>
+                    <div class="price">
+                        <h4>Prix: ${data.price / 100} + "€"</h4>
+                        <button onclick="writeMessage('Je souhaiterais acheter la paire \\'${data.name}\\'', true)">Acheter</button>
+                    </div>
+                </div>
+            </div>
+            `
+        }
+        messagesDiv = document.querySelector(".messages")
+        // insert the productHTML string as the last child of messagesDiv
+        messagesDiv.insertAdjacentHTML('beforeend', productHTML())
+    }
     document.querySelector("textarea").value = ""
-    document.querySelector(".messages").scrollTo(0, document.body.scrollHeight);
+    messagesDiv = document.querySelector(".messages")
+    messagesDiv.scrollTo(0, messagesDiv.scrollHeight, { behavior: "smooth", },);
 }
 
 
@@ -247,25 +344,4 @@ const products = [
     },
 ];
 
-// Créer les éléments HTML pour chaque produit
-const slideItems = products.map(product => {
-    return `
-      <li class="splide__slide">
-        <img src="${product.image}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <h4>${product.price} €</h4>
-        <button>Acheter</button>
-      </li>
-    `;
-});
 
-// Insérer les éléments dans le carousel
-const carouselContainer = document.querySelector('.splide__list');
-carouselContainer.innerHTML = slideItems.join('');
-
-// Initialiser le carousel avec Splide.js
-new Splide('.splide', {
-    perPage: 3,
-    rewind: true,
-    gap: 10,
-}).mount();

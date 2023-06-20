@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\KeywordController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResponseController;
@@ -24,24 +25,28 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/guest', function () {
+    return view('guest');
+})->name('guest');
+
 Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'admin'])->name('dashboard');
 
 Route::get('/orders',[OrdersController::class,'index'])->middleware(['auth', 'verified'])->name('orders.index');
 
-Route::get('/categories',[CategoryController::class,'index'])->middleware(['auth', 'verified'])->name('categories');
-Route::get('/categories/{category}/edit',[CategoryController::class,'edit'])->middleware(['auth', 'verified'])->name('categories.edit');
+Route::get('/categories',[CategoryController::class,'index'])->middleware(['auth', 'verified', 'admin'])->name('categories');
+Route::get('/categories/{category}/edit',[CategoryController::class,'edit'])->middleware(['auth', 'verified', 'admin'])->name('categories.edit');
 Route::get('/categories/create',[CategoryController::class,'create'])->name('categories.create');
 Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 Route::post('/categories',[CategoryController::class,'store'])->name('categories.store');
 Route::delete('/categories/{category}', [CategoryController::class,'destroy'])->name('categories.destroy');
 
-Route::get('/produits',[ProductController::class,'index'])->middleware(['auth', 'verified'])->name('products');
-Route::get('/produits/{product}/edit',[ProductController::class,'edit'])->middleware(['auth', 'verified'])->name('products.edit');
+Route::get('/produits',[ProductController::class,'index'])->middleware(['auth', 'verified', 'admin'])->name('products');
+Route::get('/produits/{product}/edit',[ProductController::class,'edit'])->middleware(['auth', 'verified', 'admin'])->name('products.edit');
 Route::get('/produits/create',[ProductController::class,'create'])->name('products.create');
 Route::post('/produits',[ProductController::class,'store'])->name('products.store');
 Route::put('/produits/{product}', [ProductController::class, 'update'])->name('products.update');

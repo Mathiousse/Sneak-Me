@@ -68,6 +68,7 @@
                             <input type="text" name="phone" id="phone" value="{{ $user->phone }}"
                                 class="bg-gray-800 text-white py-2 px-4 rounded-md">
                         </td>
+
                         <td class="px-6 py-4">
                             <div class="flex flex-row">
                                 <button type="submit" class="bg-gray-800 text-white py-2 px-4 rounded-md">

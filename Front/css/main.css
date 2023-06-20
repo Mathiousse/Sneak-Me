@@ -16,6 +16,22 @@
     width: 450px;
     height: 550px;
   }
+  @media (max-width: 570px) {
+    body .chatbots {
+      right: 3rem;
+      width: 450px;
+    }
+  }
+  @media (max-width: 525px) {
+    body .chatbots {
+      width: 350px;
+    }
+  }
+  @media (max-width: 400px) {
+    body .chatbots {
+      width: 300px;
+    }
+  }
   body .chatbots .chatbot-container {
     display: flex;
     transition: opacity 0.3s ease-out;
@@ -29,6 +45,16 @@
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     position: relative;
+  }
+  @media (max-width: 525px) {
+    body .chatbots .chatbot-container .chatbot {
+      width: 375px;
+    }
+  }
+  @media (max-width: 400px) {
+    body .chatbots .chatbot-container .chatbot {
+      width: 320px;
+    }
   }
   body .chatbots .chatbot-container .chatbot .header {
     display: flex;
@@ -86,9 +112,63 @@
     margin-bottom: 30px;
     overflow-y: auto;
     overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product {
+    display: flex;
+    width: 85%;
+    background-color: #ebebeb;
+    border-radius: 5px;
+    margin-left: 3%;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .left-container {
+    display: flex;
+    margin-right: 4%;
+    width: 50%;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .left-container img {
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: auto;
+    aspect-ratio: 2;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .right-container {
+    width: 50%;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .right-container h3 {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .right-container p {
+    margin: 0;
+    font-size: 13px;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .right-container .price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 5%;
+    margin-top: 5%;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .right-container .price h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .one-product .right-container .price button {
+    color: #fff;
+    cursor: pointer;
+    padding: 1% 8%;
+    font-size: 15px;
+    margin: 5% 0;
+    border-radius: 5px;
+    border: none;
+    width: 100px;
+    background: linear-gradient(to top right, rgb(254, 90, 33) 0%, rgb(238, 23, 16) 100%);
   }
   body .chatbots .chatbot-container .chatbot .messages .message {
-    margin: 6% 0;
+    margin: 0.5rem 1rem;
   }
   body .chatbots .chatbot-container .chatbot .messages .message p {
     margin: 0;
@@ -104,23 +184,27 @@
     background-color: #ebebeb;
     border-radius: 8px 8px 8px 1px;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide {
-    margin: 0 auto;
-    max-width: 95%;
-    margin-top: 5%;
-  }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide img {
+  body .chatbots .chatbot-container .chatbot .messages .splide {
+    margin: 0 0 2rem 1rem;
     max-width: 100%;
+    margin-top: 0;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide h3 {
+  body .chatbots .chatbot-container .chatbot .messages .splide img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 125px;
+    width: 100%;
+  }
+  body .chatbots .chatbot-container .chatbot .messages .splide h3 {
     margin-bottom: 0;
     font-weight: 300;
+    font-size: 15px;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide h4 {
+  body .chatbots .chatbot-container .chatbot .messages .splide h4 {
     margin: 0;
     margin-top: 4%;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide button {
+  body .chatbots .chatbot-container .chatbot .messages .splide button {
     color: #fff;
     cursor: pointer;
     padding: 1% 8%;
@@ -130,25 +214,25 @@
     border: none;
     background: linear-gradient(to top right, rgb(254, 90, 33) 0%, rgb(238, 23, 16) 100%);
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide__slide {
+  body .chatbots .chatbot-container .chatbot .messages .splide__slide {
     background: linear-gradient(to top left, rgb(242, 242, 242) 0%, rgb(210, 210, 210) 100%);
     border-radius: 5px;
-    padding: 5% 1%;
+    padding: 1rem;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide__slide p {
+  body .chatbots .chatbot-container .chatbot .messages .splide__slide p {
     background-color: none !important;
     border-radius: none;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide__pagination {
-    top: 13em;
+  body .chatbots .chatbot-container .chatbot .messages .splide__pagination {
+    top: 16em;
     left: 0;
     right: auto !important;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide__pagination__page {
+  body .chatbots .chatbot-container .chatbot .messages .splide__pagination__page {
     border: solid 1px #707070 !important;
     background: #fff !important;
   }
-  body .chatbots .chatbot-container .chatbot .messages .message.bot .splide__pagination__page.is-active {
+  body .chatbots .chatbot-container .chatbot .messages .splide__pagination__page.is-active {
     background-color: #707070 !important;
   }
   body .chatbots .chatbot-container .chatbot .messages .button-user .button-login,
@@ -494,6 +578,12 @@
     position: absolute;
     bottom: 0;
     right: -30px;
+  }
+  @media (max-width: 525px) {
+    body .chatbots .opener {
+      right: -40px;
+      bottom: -45px;
+    }
   }
   body .chatbots .opener.chat-closed {
     width: 100px;

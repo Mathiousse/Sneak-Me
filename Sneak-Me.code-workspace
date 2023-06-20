@@ -1,11 +1,10 @@
 {
 	"folders": [
 		{
-			"name": "PM-2",
-			"path": "../../../../Local Documents/Work/mypacome/PM-2"
+			"path": "."
 		},
 		{
-			"path": "."
+			"path": "../../Solo/MYTOTOOL"
 		}
 	],
 	"settings": {

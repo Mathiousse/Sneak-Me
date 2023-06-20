@@ -67,6 +67,7 @@ class UserController extends Controller
             'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
             'phone' => 'required|string|max:15',
+            'role' => 'array'
         ]);
     
         $user->update([
@@ -75,6 +76,8 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
         ]);
+
+        
     
         return redirect()->route('user')->with('success', "L'utilisateur ". $user->name .' a bien été modifié.');
     }

@@ -8,6 +8,8 @@ use \App\Models\User;
 use \App\Models\Category;
 use App\Models\Keyword;
 use App\Models\Messages;
+use App\Models\OrderItems;
+use App\Models\Orders;
 use \App\Models\Product;
 use App\Models\Response;
 use Illuminate\Support\Str;
@@ -34,6 +36,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'New Balance',
         ]);
         Category::create([
+            'name' => 'Adidas',
+        ]);
+        Category::create([
             'name' => 'Noir',
         ]);
         Category::create([
@@ -41,33 +46,71 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $product = Product::create([
-            'name' => "NIKE DUNK LOW PANDA",
+            'name' => "Nike Air Vapormax 360",
             'description' => "La Nike Dunk Low : craquez pour cette paire confortable au look minimaliste !",
-            'price' => "12000",
-            'image' => "https://www.courir.com/dw/image/v2/BCCL_PRD/on/demandware.static/-/Sites-master-catalog-courir/default/dwe137876f/images/hi-res/001488292_101.png?sw=600&sh=600&sm=fit&frz-v=34",
-            'stock' => "9",
+            'price' => "18000",
+            'image' => "Chaussures/wfmZrHZsLYFqg9v8RwGu47nkcpDLuWPL4iqglNUk",
+            'stock' => "15",
         ]);
         $product->categories()->attach(Category::where('name', '=', 'Nike')->first());
-        $product->categories()->attach(Category::where('name', '=', 'Blanc')->first());
         $product->categories()->attach(Category::where('name', '=', 'Noir')->first());
         
         $product = Product::create([
-            'name' => "NEW BALANCE 2002R",
-            'description' => "La New Balance 2002R réintroduit un favori de la course à pied technique des années 2000, en enrichissant le design original d’améliorations modernes. L’empeigne en matière synthétique suit des courbes élégantes et des découpes qui modernisent le look classique. Les caractéristiques de la semelle extérieure Stability Web et N-ergy anti-chocs, réunies sur une semelle intermédiaire ABZORB, offrent un confort et des performances qui ne peuvent pas être datées.",
-            'price' => "17000",
-            'image' => "https://www.e-scribe.fr/wp-content/uploads/2021/06/lifestyle-hommes-new-balance-2002r-munsell-white.jpg",
-            'stock' => "18",
+            'name' => "Nike Air Force 1",
+            'description' => "",
+            'price' => "15000",
+            'image' => "Chaussures/jgV8y0ko41oYwWzdTUf56BMLahZdwNtOkIAWiOTP",
+            'stock' => "24",
         ]);
-        $product->categories()->attach(Category::where('name', '=', 'New Balance')->first());
+        $product->categories()->attach(Category::where('name', '=', 'Nike')->first());
         $product->categories()->attach(Category::where('name', '=', 'Blanc')->first());
 
-        // Product::create([
-        //     'name' => "",
-        //     'description' => "",
-        //     'price' => "",
-        //     'image' => "",
-        //     'stock' => "",
-        // ]);
+
+        $product = Product::create([
+            'name' => "Adidas NMD R1",
+            'description' => "",
+            'price' => "14000",
+            'image' => "Chaussures/x2vnQrzVUfT6uCs6RsfisJdSs7U6HFhJW7HrnQFW",
+            'stock' => "41",
+        ]);
+
+        $product->categories()->attach(Category::where('name', '=', 'Adidas')->first());
+        $product->categories()->attach(Category::where('name', '=', 'Noir')->first());
+
+        $product = Product::create([
+            'name' => "Adidas Stan Smith",
+            'description' => "",
+            'price' => "1200",
+            'image' => "Chaussures/mFCMnuWxIbrjWczzsYgONRHdETLyAjoB1I2jyZbY",
+            'stock' => "73",
+        ]);
+
+        $product->categories()->attach(Category::where('name', '=', 'Adidas')->first());
+        $product->categories()->attach(Category::where('name', '=', 'Blanc')->first());
+
+        $product = Product::create([
+            'name' => "Adidas Superstar",
+            'description' => "",
+            'price' => "1900",
+            'image' => "Chaussures/3vhFA4EljaH3YucU3rmGAKrfu9Wh0D8sSEyehbPi",
+            'stock' => "17",
+        ]);
+        $product->categories()->attach(Category::where('name', '=', 'Adidas')->first());
+        $product->categories()->attach(Category::where('name', '=', 'Noir')->first());
+        $product->categories()->attach(Category::where('name', '=', 'Blanc')->first());
+
+
+        $product = Product::create([
+            'name' => "New Balance 5740",
+            'description' => "",
+            'price' => "13500",
+            'image' => "Chaussures/wfmZrHZsLYFqg9v8RwGu47nkcpDLuWPL4iqglNUk",
+            'stock' => "58",
+        ]);
+        $product->categories()->attach(Category::where('name', '=', 'New Balance')->first());
+        $product->categories()->attach(Category::where('name', '=', 'Noir')->first());
+        $product->categories()->attach(Category::where('name', '=', 'Blanc')->first());
+
 
         User::create([
             'name' => 'Mathieu',
@@ -114,6 +157,25 @@ class DatabaseSeeder extends Seeder
         Keyword::create([
             'keyword' => 'support',
             'response_id' => 3,
+        ]);
+
+        Orders::create([
+            'status' => 0,
+            'total' => 0,
+            'user_id' => User::where('email', '=', 'mathieu.capon@viacesi.fr')->first()->id,
+        ]);
+        
+        OrderItems::create([
+            'product_id' => 1,
+            'order_id' => 1,
+            'quantity' => 3,
+            'price' => 0,
+        ]);
+        OrderItems::create([
+            'product_id' => 2,
+            'order_id' => 1,
+            'quantity' => 2,
+            'price' => 0,
         ]);
     }
 }

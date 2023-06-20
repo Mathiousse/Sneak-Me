@@ -56,8 +56,8 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('orders') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd dark:active:bgorange-500 {{ Route::currentRouteName() === 'orders' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
+                <a href="{{ route('orders.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-100 dark:hover:bg-gradient-to-r from-orangedg to-orangefd dark:active:bgorange-500 {{ Route::currentRouteName() === 'orders.index' ? 'dark:active: bg-gradient-to-r from-orangedg to-orangefd' : '' }}">
                     <svg id="boite" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                         viewBox="0 0 28.421 27.752">
                         <path id="Tracé_41" data-name="Tracé 41"

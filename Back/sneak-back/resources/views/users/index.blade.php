@@ -56,6 +56,9 @@
                         {{ __('Dernière modification le') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        {{ __('Rôle') }}
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         {{ __('Action') }}
                     </th>
                 </tr>
@@ -81,6 +84,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $user->updated_at }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $user->role }}
                         </td>
                         <td class="px-6 py-4">
                             <a href="{{ route('user.edit', $user) }}"
